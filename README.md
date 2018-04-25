@@ -8,6 +8,7 @@ Bienvenido a la prueba técnica para la vacante de **backend developer** en urbv
 
 # Objetivos
 - Crea un CRUD para cada modelo.
+- Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
 - Agrega las reglas de negocio que creas necesarias.
 - Agrega las validaciones que creas necesarias.
 - Documenta el código.
