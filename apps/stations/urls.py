@@ -1,12 +1,12 @@
 # coding: utf8
 from django.urls import path
-
-from .v1 import views as views_v1
+from .views import LocationListView, LocationCreateView, LocationUpdateView, LocationDeleteView
 
 urlpatterns_v1_locations = ([
 
-    path('',
-         views_v1.LocationView.as_view(),
-         name='v1_list_create_location'),
+    path('', LocationListView.as_view(), name='list'),
+    path('create', LocationCreateView.as_view(), name='create'),
+    path('update/<str:pk>/', LocationUpdateView.as_view(), name='update'),
+    path('delete/<str:pk>/', LocationDeleteView.as_view(), name='delete'),
 
 ], 'locations')

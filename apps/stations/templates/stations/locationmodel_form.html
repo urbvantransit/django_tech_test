@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+<h2>{{descrption}}</h2>
+
+<form method="post"  class="form-horizontal" role="form" >
+    {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group {{field.name}}">
+            <div class="col-sm-4 col-md-4">
+                <div class="general-label">{{ field.label }}
+                {% if field.field.required %}
+                    <b style="color: red;">*</b>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-8">
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        </div>
+        {% endfor %}
+    <div class="flex-container">
+        <div class="login-input flex-container right-container">
+            <div class="submit">
+                <input type="submit" value="{{ button_legend }}">
+            </div>
+        </div>
+    </div>
+</form>
+
+<a href="{% url 'locations:list' %}">Back</a>
