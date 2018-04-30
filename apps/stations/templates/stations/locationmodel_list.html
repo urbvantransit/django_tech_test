@@ -1,0 +1,45 @@
+<h1>{{title}}</h1>
+<h2>{{description}}</h2>
+<h3>available actions</h3>
+<ol>
+	<li>
+		<a href="{% url 'locations:create' %}">Create (click)</a>
+	</li>
+	<li>Read (implicit)</li>
+	<li>Update</li>
+	<li>Delete</li>
+</ol>
+
+{% if messages %}
+    <ul class="messages" style="list-style-type:none">
+        {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        	<h3>{{ message }}</h3>
+    	</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<table>
+	<tr>
+	    <th>Name</th>
+	    <th>Longitug</th>
+	    <th>Latitude</th>
+	    <th>Actions</th>
+	</tr>
+	    {% for object in object_list %}
+	        <tr>
+	            <td>{{ object.name }} </td>
+	            <td>{{ object.latitude }} </td>
+	            <td>{{ object.longitude }} </td>
+	            <td>
+	                 <a href="{% url 'locations:update' object.id %}">Update</a>
+	                 <a href="{% url 'locations:delete' object.id %}">Delete</a>
+	            </td>
+	        </tr>
+	    {% empty %}
+	        <tr>
+	            <td>Empty list</td>
+	        </tr>
+	    {% endfor %}
+</table>
