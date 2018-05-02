@@ -1,8 +1,7 @@
 # coding: utf8
+
 from django.db import models
-
 from apps.stations.models import StationModel
-
 from apps.utils import create_id
 
 

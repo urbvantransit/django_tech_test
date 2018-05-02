@@ -1,9 +1,0 @@
-{% extends 'base/layout_user.html' %}
-{% block title %}Locations{% endblock %}
-{% block content %}
-<h1>{{title}}</h1>
-<h2>{{description}}</h2>
-<form action="" method="post">{% csrf_token %}
-    <input type="submit" value="{{button_legend}}" />
-</form>
-{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base/layout_user.html' %}
+{% block title %}Stations{% endblock %}
+{% block content %}
+<h1>Stations</h1>
+<h2>Listado de Stations</h2>
+<div>
+	<a class="btn btn-primary" href="{% url 'stations:create' %}">Agragar Station</a>
+</div>
+<table>
+	<tr>
+	    <th>Id</th>
+		<th>Location</th>
+	    <th></th>
+	</tr>
+	    {% for object in object_list %}
+	        <tr>
+	            <td>{{ object.id }} </td>
+	            <td>{{ object.location }} </td>
+	            <td>
+	                 <a href="{% url 'stations:update' object.id %}"><i class="far fa-edit"></i></a>
+	                 <a href="{% url 'stations:delete' object.id %}"><i class="far fa-trash-alt"></i></a>
+	            </td>
+	        </tr>
+	    {% empty %}
+	        <tr>
+	            <td><a href="{% url 'stations:create' %}">Agragar Station</a></td>
+	        </tr>
+	    {% endfor %}
+</table>
+{% endblock %}
