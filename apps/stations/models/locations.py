@@ -1,6 +1,5 @@
 # coding: utf8
 from django.db import models
-
 from apps.utils import create_id
 
 

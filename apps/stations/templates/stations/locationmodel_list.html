@@ -1,0 +1,32 @@
+{% extends 'base/layout_user.html' %}
+{% block title %}Locations{% endblock %}
+{% block content %}
+<h1>Locations</h1>
+<h2>Listado de Locations</h2>
+<div>
+	<a class="btn btn-primary" href="{% url 'locations:create' %}">Agragar Location</a>
+</div>
+<table>
+	<tr>
+	    <th>Nombre</th>
+		<th>Latitud</th>
+	    <th>Longitud</th>
+	    <th></th>
+	</tr>
+	    {% for object in object_list %}
+	        <tr>
+	            <td>{{ object.name }} </td>
+	            <td>{{ object.latitude }} </td>
+	            <td>{{ object.longitude }} </td>
+	            <td>
+	                 <a href="{% url 'locations:update' object.id %}"><i class="far fa-edit"></i></a>
+	                 <a href="{% url 'locations:delete' object.id %}"><i class="far fa-trash-alt"></i></a>
+	            </td>
+	        </tr>
+	    {% empty %}
+	        <tr>
+	            <td><a href="{% url 'locations:create' %}">Agragar Location</a></td>
+	        </tr>
+	    {% endfor %}
+</table>
+{% endblock %}
