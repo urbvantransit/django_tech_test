@@ -1,0 +1,34 @@
+{% extends 'base/layout_user.html' %}
+{% block title %}Routes{% endblock %}
+{% block content %}
+<h1>Routes</h1>
+<h2>Listado de Routes</h2>
+<div>
+	<a class="btn btn-primary" href="{% url 'routes:create' %}">Agragar Route</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Color</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+	    {% for object in object_list %}
+	        <tr>
+	            <td>{{ object.id }} </td>
+	            <td>{{ object.line }} </td>
+	            <td>
+	                 <a href="{% url 'routes:update' object.id %}"><i class="far fa-edit"></i></a>
+	                 <a href="{% url 'routes:delete' object.id %}"><i class="far fa-trash-alt"></i></a>
+	            </td>
+	        </tr>
+	    {% empty %}
+	        <tr>
+	            <td><a href="{% url 'routes:create' %}">Agragar Route</a></td>
+	        </tr>
+	    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
