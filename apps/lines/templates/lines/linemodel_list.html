@@ -1,0 +1,34 @@
+{% extends 'base/layout_user.html' %}
+{% block title %}Lines{% endblock %}
+{% block content %}
+<h1>Lines</h1>
+<h2>Listado de Lines</h2>
+<div>
+	<a class="btn btn-primary" href="{% url 'lines:create' %}">Agragar Line</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Color</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+	    {% for object in object_list %}
+	        <tr>
+	            <td>{{ object.name }} </td>
+	            <td>{{ object.color }} </td>
+	            <td>
+	                 <a href="{% url 'lines:update' object.id %}"><i class="far fa-edit"></i></a>
+	                 <a href="{% url 'lines:delete' object.id %}"><i class="far fa-trash-alt"></i></a>
+	            </td>
+	        </tr>
+	    {% empty %}
+	        <tr>
+	            <td><a href="{% url 'lines:create' %}">Agragar Line</a></td>
+	        </tr>
+	    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
