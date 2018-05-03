@@ -11,7 +11,7 @@ admin.site.register(LocationModel, LocationModelAdmin)
 
 
 class StationModelAdmin(admin.ModelAdmin):
-    list_display = ('id', 'location', 'order', 'is_active')
-    #search_fields = ('name', 'key')
+    list_display = ('id', 'name', 'location', 'order', 'is_active')
+    search_fields = ('name', 'key')
 
 admin.site.register(StationModel, StationModelAdmin)

@@ -9,7 +9,7 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>Id</th>
+			<th>Nombre</th>
 			<th>Location</th>
 			<th></th>
 		</tr>
@@ -17,7 +17,7 @@
 	<tbody>
 	    {% for object in object_list %}
 	        <tr>
-	            <td>{{ object.id }} </td>
+	            <td>{{ object.name }} </td>
 	            <td>{{ object.location }} </td>
 	            <td>
 	                 <a href="{% url 'stations:update' object.id %}"><i class="far fa-edit"></i></a>
