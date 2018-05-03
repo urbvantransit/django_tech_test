@@ -1,9 +1,0 @@
-{% extends 'base/layout_user.html' %}
-{% block title %}Locations{% endblock %}
-{% block content %}
-<h1>Eliminar la location {{name}}</h1>
-<form action="" method="post">{% csrf_token %}
-    <input type="submit" class="btn btn-danger" value="Eliminar" />
-    <a class="btn btn-success" href="{% url 'locations:list' %}">Cancelar</a>
-</form>
-{% endblock %}
