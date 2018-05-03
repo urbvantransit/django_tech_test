@@ -3,6 +3,7 @@
 from django.db import models
 from apps.stations.models import StationModel
 from apps.utils import create_id
+from colorful.fields import RGBColorField
 
 
 class LineModel(models.Model):
@@ -10,7 +11,10 @@ class LineModel(models.Model):
     id = models.CharField(default=create_id('line_'), primary_key=True,
                           max_length=30, unique=True)
     name = models.CharField(max_length=100)
-    color = models.CharField(max_length=8)
+    color = RGBColorField()
+
+    def __str__(self):
+        return self.name
 
 
 class RouteModel(models.Model):
@@ -21,3 +25,6 @@ class RouteModel(models.Model):
     stations = models.ManyToManyField(StationModel)
     direction = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.id

@@ -78,7 +78,7 @@ class StationListView(ListView):
 
 class StationCreateView(CreateView):
     model = StationModel
-    fields = ('id', 'location', 'order', 'is_active')
+    fields = ('location', 'order', 'is_active')
     success_url = reverse_lazy('stations:list')
 
     def get_context_data(self, **kwargs):
@@ -93,7 +93,7 @@ class StationCreateView(CreateView):
 
 class StationUpdateView(UpdateView):
     model = StationModel
-    fields = ('id', 'location', 'order', 'is_active')
+    fields = ('location', 'order', 'is_active')
     success_url = reverse_lazy('stations:list')
 
     def get_context_data(self, **kwargs):

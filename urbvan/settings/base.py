@@ -50,6 +50,7 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS.append('colorful')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
