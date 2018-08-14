@@ -1,10 +1,11 @@
 from django.urls import path
 
-from . import views
+from .views import getAndPostLineModel,putAndDeleteLineModel
 
 
 urlpatterns = [
-    path('', views.getLineModel),
+    path('',getAndPostLineModel),
+    path('<str:id>',putAndDeleteLineModel),
     # path('index/', views.index, name='main-view'),
     # path('menu/', views.menu, name='menu-view'),
     # path('list/', views.layout_list, name='list-view'),
