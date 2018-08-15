@@ -13,16 +13,3 @@ class StationModel(models.Model):
     location = models.ForeignKey(LocationModel, on_delete=models.DO_NOTHING)
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
-
-@api_view(['GET','POST'])
-def getAndPostLineModel(request):
-    if request.method == 'GET':
-        data_promos = LineModel.objects.all()
-        data = serializers.serialize('json', data_promos)
-        return HttpResponse(data, content_type="application/json")
-    if request.method == 'POST':
-        serializer = LineSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return HttpResponse(serializer.data,status=status.HTTP_201_CREATED)
-        return HttpResponse(serializer.errors,status=status.HTTP_400_BAD_REQUEST)

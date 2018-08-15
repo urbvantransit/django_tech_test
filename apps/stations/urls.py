@@ -7,16 +7,19 @@ urlpatterns_v1_locations = ([
 
     path('',views_v1.LocationView.as_view(),
          name='v1_list_create_location'),
+    path('<str:pk>/update/',views_v1.LocationUpdateView.as_view(),
+         name='v1_update_location'), 
+    path('<str:pk>/delete/',views_v1.LocationDestroyView.as_view(),
+         name='v1_delete_location'),
+    
 
 ], 'locations')
 
 urlpatterns_stations = [
-    path('',views_v1.getAndPostLineModel),
-    path('<str:id>',putAndDeleteLineModel),
-    # path('index/', views.index, name='main-view'),
-    # path('menu/', views.menu, name='menu-view'),
-    # path('list/', views.layout_list, name='list-view'),
-    # path('promos_list/', views.promos_list, name='promos-view'),
-    # path('stores/<str:search>', views.get_stores, name='stores-view'),
-
+    path('',views_v1.StationView.as_view(),
+         name='v1_list_create_station'), 
+    path('<str:pk>/update/',views_v1.StationUpdateView.as_view(),
+         name='v1_update_station'), 
+    path('<str:pk>/delete/',views_v1.StationDestroyView.as_view(),
+         name='v1_delete_station'), 
 ]
