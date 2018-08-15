@@ -1,15 +1,23 @@
 from django.urls import path
 
-from .views import getAndPostLineModel,putAndDeleteLineModel
+from .views import (LineView,LineUpdateView,LineDestroyView,
+                    RouteView,RouteUpdateView,RouteDestroyView)
 
 
-urlpatterns = [
-    path('',getAndPostLineModel),
-    path('<str:id>',putAndDeleteLineModel),
-    # path('index/', views.index, name='main-view'),
-    # path('menu/', views.menu, name='menu-view'),
-    # path('list/', views.layout_list, name='list-view'),
-    # path('promos_list/', views.promos_list, name='promos-view'),
-    # path('stores/<str:search>', views.get_stores, name='stores-view'),
+urlpatterns_line = [
+    path('',LineView.as_view(),
+         name='v1_list_create_Line'), 
+    path('<str:pk>/update',LineUpdateView.as_view(),
+         name='v1_update_Line'), 
+    path('<str:pk>/',LineDestroyView.as_view(),
+         name='v1_delete_Line'),
+]
 
+urlpatterns_route = [
+    path('',RouteView.as_view(),
+         name='v1_list_create_route'), 
+    path('<str:pk>/update/',RouteUpdateView.as_view(),
+         name='v1_update_Route'), 
+    path('<str:pk>/',RouteDestroyView.as_view(),
+         name='v1_delete_Route'),
 ]
