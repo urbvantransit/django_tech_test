@@ -26,7 +26,7 @@ class LineView(ListCreateView):
     ``permission_classes``
         Permission classes for get an post :model:`lines.LineModel`
     """
-    queryset = LineModel.objects.all()
+    queryset = LineModel.objects.get_queryset().order_by('id')
     schema_class = LineSchema
     serializer_class = LineSerializer
     permission_classes = (IsNormalUser,)
@@ -92,7 +92,7 @@ class RouteView(ListCreateView):
     ``permission_classes``
         Permission classes for get an post :model:`lines.RouteModel`
     """
-    queryset = RouteModel.objects.all()
+    queryset = RouteModel.objects.get_queryset().order_by('id')
     schema_class = RouteSchema
     serializer_class = RouteSerializer
     permission_classes = (IsNormalUser,)

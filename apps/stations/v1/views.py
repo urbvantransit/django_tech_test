@@ -24,7 +24,7 @@ class LocationView(ListCreateView):
     ``serializer_class``
         Serializer of :model:`stations.LocationModel`
     """
-    queryset = LocationModel.objects.all()
+    queryset = LocationModel.objects.get_queryset().order_by('id')
     schema_class = LocationSchema
     serializer_class = LocationSerializer
 
@@ -81,7 +81,7 @@ class StationView(ListCreateView):
     ``serializer_class``
         Serializer of :model:`stations.StationModel`
     """
-    queryset = StationModel.objects.all()
+    queryset = StationModel.objects.get_queryset().order_by('id')
     schema_class = StationSchema
     serializer_class = StationSerializer
 
