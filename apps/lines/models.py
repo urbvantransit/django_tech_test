@@ -11,7 +11,10 @@ business.
 """
 
 class LineModel(models.Model):
-    """LineModel class is child of django.db model"""
+    """
+    LineModel class is child of django.db model and
+    store a single Line.
+    """
     id = models.CharField(default=create_id('line_'), primary_key=True,
                           max_length=30, unique=True)
     name = models.CharField(max_length=100)
@@ -19,7 +22,10 @@ class LineModel(models.Model):
 
 
 class RouteModel(models.Model):
-    """RouteModel class is child of django.db model"""
+    """
+    RouteModel class is child of django.db model and 
+    store a single Route related to :model:`lines.LineModel`
+    """
     id = models.CharField(default=create_id('route_'), primary_key=True,
                           max_length=30, unique=True)
     line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
