@@ -1,5 +1,5 @@
 # coding: utf8
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView,UpdateAPIView,DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .mixins import (CreateModelMixin, ListModelMixin)
@@ -34,3 +34,15 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 class ListCreateView(CreateAPIView, ListAPIView):
     pass
+
+class UpdateView(UpdateAPIView):
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    pagination_class = PaginationResponse
+
+class DestroyView(DestroyAPIView):
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    pagination_class = PaginationResponse
