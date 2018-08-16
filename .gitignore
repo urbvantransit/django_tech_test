@@ -97,6 +97,5 @@ urbvan/db.sqlite3
 pyvenv.cfg
 .venv
 pip-selfcheck.json
-
-
 # End of https://www.gitignore.io/api/virtualenv
+share/
