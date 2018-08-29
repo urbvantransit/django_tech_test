@@ -8,7 +8,6 @@ def render_response_error(errors={}):
 
         if type(value) is list:
             value = {"message": value[0]}
-
         value.update({"field": key})
         list_errors.append(value)
 
@@ -22,7 +21,7 @@ def render_to_response(body={}):
 
     response = {}
     response = BaseBodySchema().dump({
-        "results": [body]
+        "result": body
     }).data
     response = BaseResponseSchema().dump({
         "body": response

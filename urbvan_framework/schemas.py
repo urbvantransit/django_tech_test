@@ -21,19 +21,11 @@ class BaseBodyLinkSchema(Schema):
 
 class BaseBodySchema(Schema):
 
-    links = fields.Nested(
-        BaseBodyLinkSchema(),
-        default=BaseBodyLinkSchema().dump({}).data
-    )
     count = fields.Integer()
-    results = fields.List(fields.Dict())
+    result = fields.Dict()
 
     @pre_dump
     def validate_count(self, data):
-
-        count = len(data.get("results", []))
-        data['count'] = count
-
         return data
 
 
