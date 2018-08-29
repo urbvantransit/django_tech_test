@@ -12,3 +12,10 @@ class LocationViewSet(CRUDLView, viewsets.GenericViewSet):
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
+
+
+class StationViewSet(CRUDLView, viewsets.GenericViewSet):
+
+    queryset = StationModel.objects.all()
+    schema_class = StationSchema
+    serializer_class = StationSerializer

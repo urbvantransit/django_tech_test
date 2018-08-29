@@ -17,3 +17,11 @@ def create_id(identifier):
         str(uuid4())[:8]
     )
     return id_base
+
+
+def create_location_id():
+    return create_id('location_')
+
+
+def create_station_id():
+    return create_id('station_')
