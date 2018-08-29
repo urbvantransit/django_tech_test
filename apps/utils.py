@@ -25,3 +25,11 @@ def create_location_id():
 
 def create_station_id():
     return create_id('station_')
+
+
+def create_line_id():
+    return create_id('line_')
+
+
+def create_route_id():
+    return create_id('route_')
