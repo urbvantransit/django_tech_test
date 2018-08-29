@@ -2,7 +2,7 @@
 from rest_framework import (mixins, status)
 from rest_framework.response import Response
 
-from .utils import (render_to_response, render_response_error)
+from urbvan_framework.utils import (render_to_response, render_response_error)
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
