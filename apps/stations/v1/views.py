@@ -1,14 +1,28 @@
 # coding: utf8
-from urbvan_framework.views import ListCreateView
+from rest_framework import viewsets
 
-from .schemas import LocationSchema
-from .serializers import LocationSerializer
+from apps.stations.v1.schemas import StationSchema, LocationSchema
+from apps.stations.v1.serializers import StationSerializer, LocationSerializer
+from apps.stations.models import StationModel, LocationModel
+from urbvan_framework.views import CRUDLView
+from urbvan_framework.utils import get_urbvan_permissions
 
-from ..models import LocationModel
 
-
-class LocationView(ListCreateView):
+class LocationViewSet(CRUDLView, viewsets.GenericViewSet):
 
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
+
+    def get_permissions(self):
+        return get_urbvan_permissions(self.action)
+
+
+class StationViewSet(CRUDLView, viewsets.GenericViewSet):
+
+    queryset = StationModel.objects.all()
+    schema_class = StationSchema
+    serializer_class = StationSerializer
+
+    def get_permissions(self):
+        return get_urbvan_permissions(self.action)
