@@ -1,11 +1,11 @@
 # coding: utf8
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import DestroyModelMixin
+from rest_framework.permissions import IsAuthenticated
 
-from .mixins import (CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
-from .schemas import PaginationResponse
-from .authentication import CustomTokenAuthentication
+from urbvan_framework.mixins import (CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+from urbvan_framework.schemas import PaginationResponse
+from urbvan_framework.authentication import CustomTokenAuthentication
 
 
 class CreateAPIView(CreateModelMixin, GenericAPIView):
