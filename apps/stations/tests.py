@@ -36,3 +36,15 @@ class LocationCreateTest(APITestCase):
 
         response = self.client.post(self.url, data, format='json')
         self.assertEquals(response.status_code, 201)
+
+    def test_non_empty_create(self):
+        LocationFactory.create_batch(4)
+
+        data = {
+            "name": "Urbvan",
+            "latitude": 19.388401,
+            "longitude": -99.227358
+        }
+
+        response = self.client.post(self.url, data, format='json')
+        self.assertEquals(response.status_code, 201)
