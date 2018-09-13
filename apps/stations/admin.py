@@ -1,5 +1,11 @@
 from django.contrib import admin
 
-from .models import LocationModel
+from . import models
 
-admin.site.register(LocationModel)
+
+class StationsAppAdmin(admin.ModelAdmin):
+    list_display = ('id', '__str__')
+
+
+admin.site.register(models.LocationModel, StationsAppAdmin)
+admin.site.register(models.StationModel, StationsAppAdmin)

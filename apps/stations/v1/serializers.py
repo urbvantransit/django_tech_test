@@ -1,11 +1,17 @@
 # coding: utf8
 from rest_framework import serializers
 
-from apps.stations.models import LocationModel
+from .. import models
 
 
-class LocationSerializer(serializers.ModelSerializer):
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = LocationModel
-        exclude = ('id', )
+        model = models.LocationModel
+        exclude = []
+
+
+class StationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.StationModel
+        exclude = []
