@@ -12,5 +12,5 @@ class LineViewSet(ModelViewSet):
 
 
 class RouteViewSet(ModelViewSet):
-    queryset = models.StationModel.objects.all()
+    queryset = models.RouteModel.objects.all()
     serializer_class = serializers.RouteSerializer

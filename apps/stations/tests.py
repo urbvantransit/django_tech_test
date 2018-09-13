@@ -85,7 +85,7 @@ class StationCRUDTest(APITestCase):
         self.assertEquals(response['body'].get('count'), 1)
 
     def test_update(self):
-        """Change the order of a factory Station"""
+        """Updates the order field of a factory made Station"""
         # test initial order
         sta = StationFactory()
         response = self.client.get(self.url)
