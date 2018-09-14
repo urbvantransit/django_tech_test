@@ -10,7 +10,7 @@ class LineFactory(factory.django.DjangoModelFactory):
         model = models.LineModel
 
     name = factory.Faker('street_name')
-    color = factory.Faker('color_name')
+    color = factory.Faker('hex_color')
 
 
 class RouteFactory(factory.django.DjangoModelFactory):

@@ -7,6 +7,8 @@ from apps.utils import create_id
 
 
 class LineModel(models.Model):
+    class Meta:
+        ordering = ('id',)
 
     id = models.CharField(default=create_id('line_'), primary_key=True,
                           max_length=30, unique=True)
@@ -18,6 +20,8 @@ class LineModel(models.Model):
 
 
 class RouteModel(models.Model):
+    class Meta:
+        ordering = ('id',)
 
     id = models.CharField(default=create_id('route_'), primary_key=True,
                           max_length=30, unique=True)
