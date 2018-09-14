@@ -135,6 +135,10 @@ STATIC_URL = '/static/'
 # Django rest framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
+        'urbvan_framework.authentication.CustomTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'apps.users.permissions.CustomPermission',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'urbvan_framework.schemas.PaginationResponse',
 }

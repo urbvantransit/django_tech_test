@@ -18,6 +18,13 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_active = True
 
 
+class StaffUserFactory(UserFactory):
+    class Meta:
+        model = User
+
+    is_staff = True
+
+
 class TokenFactory(factory.django.DjangoModelFactory):
 
     class Meta:

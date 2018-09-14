@@ -1,14 +1,15 @@
 # coding: utf8
-from urbvan_framework.views import ListCreateView
+from rest_framework.viewsets import ModelViewSet
 
-from .schemas import LocationSchema
-from .serializers import LocationSerializer
-
-from ..models import LocationModel
+from . import serializers
+from .. import models
 
 
-class LocationView(ListCreateView):
+class LocationViewSet(ModelViewSet):
+    queryset = models.LocationModel.objects.all()
+    serializer_class = serializers.LocationSerializer
 
-    queryset = LocationModel.objects.all()
-    schema_class = LocationSchema
-    serializer_class = LocationSerializer
+
+class StationViewSet(ModelViewSet):
+    queryset = models.StationModel.objects.all()
+    serializer_class = serializers.StationSerializer
