@@ -26,7 +26,7 @@ class RouteFactory(factory.django.DjangoModelFactory):
     is_active = factory.Faker('boolean')
 
     @factory.post_generation
-    def stations(self, create, **kwargs):
+    def stations(self, create, unused, **kwargs):
         if not create:
             return
         else:
