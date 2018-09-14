@@ -138,7 +138,7 @@ REST_FRAMEWORK = {
         'urbvan_framework.authentication.CustomTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'apps.users.permissions.CustomPermission',
     ),
     'DEFAULT_PAGINATION_CLASS': 'urbvan_framework.schemas.PaginationResponse',
 }
