@@ -9,14 +9,15 @@ Bienvenido a la prueba técnica para la vacante de **backend developer** en urbv
 # Objetivos
 - Crea un CRUD para cada modelo.
 - Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
-- Agrega las reglas de negocio que creas necesarias.
-- Agrega las validaciones que creas necesarias.
 - Documenta el código.
 - Crea pruebas unitarias.
 - Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
 - Crea commits descriptivos.
-- ¿Te sobro tiempo? Agrega los modelos que creas necesarios para el negocio.
+- Crear un archivo Dockerfile para correr el proyecto con nginx y wsgi.
+- Crear un router para separar la base de datos de lectura y escritura. 
 
 
 La prueba tiene un tiempo para desarrollarse de 3 días, si tienes alguna duda por favor, házmela saber.
+
+
 Recuerda, en **URBVAN** queremos a los mejores y sabemos que tú puedes ser uno de ellos.
