@@ -4,7 +4,7 @@ import django.db import models
 class User(models.Model):
     """
 
-    This clas use a template as a user in this App
+    This class use a template as a user in this App
     we got a basic information about user.
 
     fisrt_name -- name user

@@ -13,11 +13,12 @@ de este proyecto
 -Se visualizan las importaciones hechas de otras apis no utilizadas y no conocidas
 -Se llevara a cabo el proyecto con las solicitudes a donde mis conocimientos alcanzan dentro de
 la perspectiva de su proyecto mas avanzado y desarrollado.
--Se procedera a estudiar al finalizar el proyecto por parte independiente todas las clases y apis usadas de las que no tengo conocimiento
+-Se procedera a estudiar al finalizar el proyecto por parte independiente
+todas las clases y apis usadas de las que no tengo conocimiento
+
+--Creacion de la App my_own_urbvan donde se incluye el desarrollo pedido
 
 Modelos:
 -Lines
--Stations
+-Stations and Locations
 -Users
-
-
