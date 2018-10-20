@@ -9,6 +9,8 @@ from apps.stations.urls import urlpatterns_v1_locations
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', views.obtain_auth_token),
-
-    path('v1/locations/', include(urlpatterns_v1_locations))
+    # My own app
+    path('my_own_urbvan/',include('my_own_urbvan.urls')),
+    # API rest_framework
+    path('v1/locations/', include(urlpatterns_v1_locations)),
 ]

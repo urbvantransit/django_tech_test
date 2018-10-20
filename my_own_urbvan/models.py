@@ -8,14 +8,14 @@ class Users(models.Model):
 
 
     id -- unique id to describe user_(number)
-    fisrt_name -- name user
+    first_name -- name user
     last_name -- last name user
     email_user -- email user to connect data user
     phone_user -- phone user to send sms
     pass_user -- password user to use in app registration
 
     """
-    fisrt_name = models.CharField(blank=True, max_length=50)
+    first_name = models.CharField(blank=True, max_length=50)
     last_name = models.CharField(blank=True, max_length=50)
     email_user = models.EmailField(blank=True, max_length=50)
     phone_user = models.IntegerField(blank=True)
@@ -23,10 +23,10 @@ class Users(models.Model):
 
 
     def __str__(self):
-        return '%s, #-%s' % (self.fisrt_name,self.phone_user)
+        return '%s, #-%s' % (self.first_name,self.phone_user)
 
     def __repr__(self):
-        return '{} #-{}'.format(self.fisrt_name,self.phone_user)
+        return '{} #-{}'.format(self.first_name,self.phone_user)
 
 
 #---------------------Model Class separator ------------------------------

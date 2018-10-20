@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users List</title>
+  </head>
+  <body>
+
+    <div>
+      <h2>Información de los Usuarios</h2>
+      {% for instance in object_list %}
+        <p>{{ instance.id }}.-Nombre: {{ instance.first_name }}, email: {{ instance.email_user }}</a></p>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>
