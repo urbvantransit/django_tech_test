@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Creación de Usuarios</title>
+  </head>
+  <body>
+    <h1>Creación de Usuarios</h1>
+    <form action="." method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Guardar Usuario">
+    </form>
+  </body>
+</html>

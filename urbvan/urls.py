@@ -1,9 +1,7 @@
 # coding: utf8
 from django.contrib import admin
 from django.urls import (include, path)
-
 from rest_framework.authtoken import views
-
 from apps.stations.urls import urlpatterns_v1_locations
 
 urlpatterns = [

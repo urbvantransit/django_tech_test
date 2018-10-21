@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Users(models.Model):
     """
@@ -24,6 +25,9 @@ class Users(models.Model):
 
     def __str__(self):
         return '%s, #-%s' % (self.first_name,self.phone_user)
+
+    def get_absolute_url(self):
+        return reverse('users:user-detail', kwargs={'id':self.id})
 
     def __repr__(self):
         return '{} #-{}'.format(self.first_name,self.phone_user)

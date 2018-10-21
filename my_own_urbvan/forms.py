@@ -1,7 +1,7 @@
 from django import forms
 from .models import Users
 # Create your forms here
-
+# Add the Form class to use in the Web as a template
 class UsersModelForm(forms.ModelForm):
     class Meta:
         model = Users
