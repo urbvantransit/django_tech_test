@@ -3,6 +3,7 @@ from .views import (
     UsersListView,
     UsersDetailView,
     UsersCreateView,
+    UsersUpdateView,
     HomeView
 )
 
@@ -13,5 +14,6 @@ urlpatterns = [
     path('',HomeView.as_view(), name='user-list'),
     path('lista-de-usuarios',UsersListView.as_view(), name='user-list'),
     path('crear/',UsersCreateView.as_view(),name='user-create'),
+    path('<int:id>/actualizar/',UsersUpdateView.as_view(), name='article-update'),
     path('<int:id>/',UsersDetailView.as_view(), name='user-detail'),
 ]

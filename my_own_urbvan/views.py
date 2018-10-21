@@ -43,7 +43,16 @@ class UsersCreateView(CreateView):
         return super().form_valid(form) #form pass form_class
 
 class UsersUpdateView(UpdateView):
-    pass
+    template_name = 'users/users_create.html'
+    form_class = UsersModelForm
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Article, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
 
 class UsersDeleteView(DeleteView):
     pass
