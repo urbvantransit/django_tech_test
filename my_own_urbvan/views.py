@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,reverse
 
 # Create your views here.
 # We're gonna create a CRUD app with Class Based Views
@@ -48,11 +48,18 @@ class UsersUpdateView(UpdateView):
 
     def get_object(self):
         id_ = self.kwargs.get("id")
-        return get_object_or_404(Article, id=id_)
+        return get_object_or_404(Users, id=id_)
 
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
 
 class UsersDeleteView(DeleteView):
-    pass
+    template_name = 'users/users_delete.html'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Users, id=id_)
+
+    def get_success_url(self):
+        return reverse('users:user-list')

@@ -2,13 +2,20 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
     <title>Users Detail</title>
   </head>
   <body>
-
-    <h1>{{object.last_name}}</h1>
+    <br><br>
+    <div class="container">
+    <h2>Informacion personalizada del usuario</h2>
+    <br>
+    <h1>Nombre: {{object.first_name}} Apellidos: {{object.last_name}}</h1>
     <p>@:{{object.email_user}}</p>
     <p>#:{{object.phone_user}}</p>
-
+    <a href="http://127.0.0.1:8000/my_own_urbvan/lista-de-usuarios" class="btn btn-warning" role="button">Usuarios</a>
+    </div>
   </body>
 </html>
