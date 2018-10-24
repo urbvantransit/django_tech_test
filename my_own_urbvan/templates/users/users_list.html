@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Style to my table -->
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+  </style>
+
+    <meta charset="utf-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+    <title>Lista de Usuarios</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Información de los Usuarios</h2>
+
+      {% for instance in object_list %}
+        <!-- <p>{{ instance.id }}.-Nombre: {{ instance.first_name }}, email: {{ instance.email_user }}</a></p> -->
+          <table border="1">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>email del usuario</th>
+            </tr>
+            <tr>
+              <a href='{{ instance.get_absolute_url }}'>Detalle del usuario</a>
+              <!-- <a href='{% url 'users:user-update'  %}'>Actualizar al usuario</a> -->
+              <td>{{ instance.id }}</td>
+              <td>{{ instance.first_name }}</td>
+              <td>{{ instance.email_user }}</td>
+            </tr>
+            <tr>
+          </table>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>

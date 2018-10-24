@@ -1,0 +1,25 @@
+//TO-DO... pasos que segui para el proyecto...
+
+
+-Se crea el ambiente de trabajo con el programa virtualenv y se activa el ambito virtual
+-Se instala una vez creado el ambiente las librerias necesaria para poder trabajar en base a:
+requirements/base.txt
+-Se crea superuser eocampo. "Edgar1986" como password para el super-usuario.
+-Se realizar la migracion con comando make emigrations
+-Se atualiza con el comando migrate
+-Se corre el servicio con el comando runserver
+-Se localiza las clases a crear como modelos y se revisa el patron en general del diseño
+de este proyecto
+-Se visualizan las importaciones hechas de otras apis no utilizadas y no conocidas
+-Se llevara a cabo el proyecto con las solicitudes a donde mis conocimientos alcanzan dentro de
+la perspectiva de su proyecto mas avanzado y desarrollado.
+-Se procedera a estudiar al finalizar el proyecto por parte independiente
+todas las clases y apis usadas de las que no tengo conocimiento
+
+--Creacion de la App my_own_urbvan donde se incluye el desarrollo pedido
+--Creacion con Clases Based on View CRUD de el primer modelo
+
+Modelos:
+-Lines
+-Stations and Locations
+-Users

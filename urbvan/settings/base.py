@@ -46,7 +46,9 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.stations',
-    'apps.lines'
+    'apps.lines',
+    'apps.users',
+    'my_own_urbvan'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
