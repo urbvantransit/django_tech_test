@@ -80,3 +80,4 @@ notebooks/
 Pycharm
 .idea/
 urbvan/db.sqlite3
+.vscode
