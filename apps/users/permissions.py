@@ -5,7 +5,7 @@ class BasicUser(BasePermission):
     """ Most basic user, only have access to read some data """
 
     def has_permission(self, request, view):
-        return request.user
+        return request.user and request.user.is_authenticated
 
 
 class StaffUser(BasePermission):
