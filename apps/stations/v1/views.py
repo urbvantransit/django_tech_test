@@ -49,3 +49,11 @@ class StationCreateView(CreateAPIView):
     schema_class = StationSchema
     serializer_class = StationSerializer
     permission_classes = (StaffUser, )
+
+
+class StationUpdateView(UpdateView):
+    
+    queryset = StationModel.objects.order_by('id').all()
+    schema_class = StationSchema
+    serializer_class = StationSerializer
+    permission_classes = (StaffUser, )

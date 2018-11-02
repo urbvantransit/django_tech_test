@@ -18,8 +18,11 @@ urlpatterns_locations = ([
 urlpatterns_stations = ([
     path('',
          views_v1.StationListView.as_view(),
-         name='stations_list'),
+         name='stations_list'),  # URL to list stations
     path('create/',
          views_v1.StationCreateView.as_view(),
-         name='stations_list')
+         name='stations_list'),  # URL to create stations
+    path('<str:pk>/update/',
+         views_v1.StationUpdateView.as_view(),
+         name='stations_update')  # URL to update stations
 ])
