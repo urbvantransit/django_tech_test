@@ -9,7 +9,7 @@ from apps.stations.factories import LocationFactory
 
 class LocationCreateTest(APITestCase):
 
-    url = reverse("locations:v1_list_create_location")
+    url = reverse("locations:locations_list_create")
 
     def setUp(self):
         self.user = UserFactory()
