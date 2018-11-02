@@ -1,5 +1,5 @@
 # coding: utf8
-from urbvan_framework.views import ListCreateView
+from urbvan_framework.views import ListCreateView, UpdateView, DestroyView
 
 from .schemas import LocationSchema
 from .serializers import LocationSerializer
@@ -10,7 +10,14 @@ from ...users.permissions import BasicUser, StaffUser, SuperUser
 
 class LocationView(ListCreateView):
 
-    queryset = LocationModel.objects.all()
+    queryset = LocationModel.objects.order_by('id').all()
+    schema_class = LocationSchema
+    serializer_class = LocationSerializer
+    permission_classes = (StaffUser, )
+
+
+class LocationUpdateView(UpdateView):
+    queryset = LocationModel.objects.order_by('id').all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
     permission_classes = (StaffUser, )
