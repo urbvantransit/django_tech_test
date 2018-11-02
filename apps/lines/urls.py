@@ -22,9 +22,9 @@ urlpatterns_lines = ([
          LineDestroyView.as_view(),
          name='line_delete')  # URL to delete line
 
-])
+], 'lines')
 
-urlpatterns_router = ([
+urlpatterns_routes = ([
     path('',
          RouteListView.as_view(),  # URL to list routes
          name='route_list'),
@@ -37,4 +37,4 @@ urlpatterns_router = ([
     path('<str:pk>/delete/',
          RouteDestroyView.as_view(),  # URL to delete routes
          name='route')
-])
+], 'routes')

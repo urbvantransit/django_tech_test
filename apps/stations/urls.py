@@ -13,7 +13,7 @@ urlpatterns_locations = ([
     path('<str:pk>/delete/',
          views_v1.LocationDestroyView.as_view(),
          name='locations_delete')  # URL to delete  location
-])
+], 'locations')
 
 urlpatterns_stations = ([
     path('',
@@ -28,4 +28,4 @@ urlpatterns_stations = ([
     path('<str:pk>/delete/',
          views_v1.StationDestroyView.as_view(),
          name='stations_delete')  #URL to delete stations
-])
+], 'stations')
