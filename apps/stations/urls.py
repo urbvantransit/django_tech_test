@@ -18,5 +18,8 @@ urlpatterns_locations = ([
 urlpatterns_stations = ([
     path('',
          views_v1.StationListView.as_view(),
+         name='stations_list'),
+    path('create/',
+         views_v1.StationCreateView.as_view(),
          name='stations_list')
 ])
