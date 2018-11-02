@@ -21,3 +21,11 @@ class LocationUpdateView(UpdateView):
     schema_class = LocationSchema
     serializer_class = LocationSerializer
     permission_classes = (StaffUser, )
+
+
+class LocationDestroyView(DestroyView):
+
+    queryset = LocationModel.objects.order_by('id').all()
+    schema_class = LocationSchema
+    serializer_class = LocationSerializer
+    permission_classes = (SuperUser, )
