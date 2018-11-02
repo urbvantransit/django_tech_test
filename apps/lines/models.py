@@ -7,6 +7,12 @@ from apps.utils import create_id
 
 
 class LineModel(models.Model):
+    """ Line
+        Fields:
+            id -- This is the unique identifier for object instance.
+            name -- This is the common identifier for a line.
+            color --  Color for line object instance.
+    """
 
     id = models.CharField(default=create_id('line_'), primary_key=True,
                           max_length=30, unique=True)
@@ -15,7 +21,14 @@ class LineModel(models.Model):
 
 
 class RouteModel(models.Model):
-
+    """ Route
+        Fields:
+            id -- This is the unique identifier for object instance.
+            line -- Reference of unique identifier of line instance.
+            stations --  Reference of unique identifier of station instance
+            direction -- Shows direction of the route.
+            is_active -- Shows if route is active.
+    """
     id = models.CharField(default=create_id('route_'), primary_key=True,
                           max_length=30, unique=True)
     line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)

@@ -1,7 +1,14 @@
 # coding: utf8
 from django.urls import path
 
-from .views import LineView, RouterView, LineUpdateView, LineDestroyView
+from .views import LineView,\
+                            LineUpdateView,\
+                            LineDestroyView,\
+                            RouteListView,\
+                            RouteCreateView,\
+                            RouteUpdateView,\
+                            RouteDestroyView
+
 
 urlpatterns_lines = ([
 
@@ -19,6 +26,15 @@ urlpatterns_lines = ([
 
 urlpatterns_router = ([
     path('',
-         RouterView.as_view(),  # URL to list routers
-         name='router_list')
+         RouteListView.as_view(),  # URL to list routes
+         name='route_list'),
+    path('create/',
+         RouteCreateView.as_view(),
+         name='route_creat'),  # URL to create routes
+    path('<str:pk>/update/',
+         RouteUpdateView.as_view(),
+         name='route_update'),  # URL to update routes
+    path('<str:pk>/delete/',
+         RouteDestroyView.as_view(),  # URL to delete routes
+         name='route')
 ])

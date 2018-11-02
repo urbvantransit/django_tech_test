@@ -12,7 +12,7 @@ class LineSchema(Schema):
     color = fields.String()
 
 
-class RouterSchema(Schema):
+class RouteSchema(Schema):
     """
         id - Unique identifier of the route
         lines - Lines of the route

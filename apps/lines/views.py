@@ -1,9 +1,10 @@
 from urbvan_framework.views import ListCreateView,\
                                                        UpdateView,\
                                                        DestroyView,\
-                                                       ListAPIView
+                                                       ListAPIView,\
+                                                       CreateAPIView
 
-from .schemas import LineSchema, RouterSchema
+from .schemas import LineSchema, RouteSchema
 from .serializers import LineSerializer, RouteSerializer
 
 from .models import LineModel, RouteModel
@@ -33,9 +34,33 @@ class LineDestroyView(DestroyView):
     permission_classes = (SuperUser, )
 
 
-class RouterView(ListAPIView):
+class RouteListView(ListAPIView):
 
     queryset = RouteModel.objects.order_by('id').all()
-    schema_class = RouterSchema
+    schema_class = RouteSchema
     serializer_class = RouteSerializer
     permission_classes = (BasicUser, )
+
+
+class RouteCreateView(CreateAPIView):
+
+    queryset = RouteModel.objects.order_by('id').all()
+    schema_class = RouteSchema
+    serializer_class = RouteSerializer
+    permission_classes = (StaffUser, )
+
+
+class RouteUpdateView(UpdateView):
+
+    queryset = RouteModel.objects.all()
+    schema_class = RouteSchema
+    serializer_class = RouteSerializer
+    permission_classes = (StaffUser, )
+
+
+class RouteDestroyView(DestroyView):
+
+    queryset = RouteModel.objects.all()
+    schema_class = RouteSchema
+    serializer_class = RouteSerializer
+    permission_classes = (SuperUser, )
