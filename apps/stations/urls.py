@@ -24,5 +24,8 @@ urlpatterns_stations = ([
          name='stations_list'),  # URL to create stations
     path('<str:pk>/update/',
          views_v1.StationUpdateView.as_view(),
-         name='stations_update')  # URL to update stations
+         name='stations_update'),  # URL to update stations
+    path('<str:pk>/delete/',
+         views_v1.StationDestroyView.as_view(),
+         name='stations_delete')  #URL to delete stations
 ])
