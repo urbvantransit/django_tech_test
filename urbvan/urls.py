@@ -4,7 +4,7 @@ from django.urls import (include, path)
 
 from rest_framework.authtoken import views
 
-from apps.stations.urls import urlpatterns_locations
+from apps.stations.urls import urlpatterns_locations, urlpatterns_stations
 from apps.lines.urls import urlpatterns_lines, urlpatterns_router
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('v1/locations/', include(urlpatterns_locations)),
     path('v1/lines/', include(urlpatterns_lines)),
     path('v1/routes/', include(urlpatterns_router)),
+    path('v1/stations/', include(urlpatterns_stations))
 ]

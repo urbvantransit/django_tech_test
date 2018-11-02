@@ -14,3 +14,9 @@ urlpatterns_locations = ([
          views_v1.LocationDestroyView.as_view(),
          name='locations_delete')  # URL to delete  location
 ])
+
+urlpatterns_stations = ([
+    path('',
+         views_v1.StationListView.as_view(),
+         name='stations_list')
+])
