@@ -10,6 +10,7 @@ from apps.stations.factories import LocationFactory
 class LocationCreateTest(APITestCase):
 
     url = reverse("locations:v1_list_create_location")
+    url_detail = "/v1/locations/loc_2018102619227a830a62a/"
 
     def setUp(self):
         self.user = UserFactory()
@@ -36,3 +37,19 @@ class LocationCreateTest(APITestCase):
 
         response = self.client.post(self.url, data, format='json')
         self.assertEquals(response.status_code, 201)
+
+    def test_get_successfully(self):
+        response = self.client.patch(self.url_detail, data, format='json')
+        self.assertEquals(response.status_code, 200)
+
+    def test_update_successfully(self):
+        data = {
+            "name": "Urbvan",
+        }
+
+        response = self.client.patch(self.url_detail, data, format='json')
+        self.assertEquals(response.status_code, 200)
+
+    def test_delete_successfully(self):
+        response = self.client.delete(self.url_detail, data, format='json')
+        self.assertEquals(response.status_code, 204)
