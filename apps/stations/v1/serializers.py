@@ -8,4 +8,4 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LocationModel
-        exclude = ('id', )
+        fields = ('id', 'name', 'latitude', 'longitude')
