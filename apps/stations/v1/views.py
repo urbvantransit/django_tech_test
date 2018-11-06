@@ -1,22 +1,23 @@
 # coding: utf8
-from urbvan_framework.views import ListCreateView
-from rest_framework import generics
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from .schemas import LocationSchema
-from .serializers import LocationSerializer
+from .schemas import LocationSchema, StationSchema
+from .serializers import LocationSerializer, StationSerializer
 
-from ..models import LocationModel
+from ..models import LocationModel, StationModel
 
 
-class LocationView(generics.ListCreateAPIView):
+# Clase para recibir peticiones del modelo Locations
+class LocationView(viewsets.ModelViewSet):
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
     permission_classes = (IsAuthenticated,)
 
-class LocationViewDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = LocationModel.objects.all()
-    schema_class = LocationSchema
-    serializer_class = LocationSerializer
+# Clase para recibir peticiones del modelo Stations
+class StationView(viewsets.ModelViewSet):
+    queryset = StationModel.objects.all()
+    schema_class = StationSchema
+    serializer_class = StationSerializer
     permission_classes = (IsAuthenticated,)
