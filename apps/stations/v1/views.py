@@ -1,7 +1,7 @@
 # coding: utf8
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from ...permissions import CustomPermissions
+from ...users.permissions import CustomPermissions
 
 from .schemas import LocationSchema, StationSchema
 from .serializers import LocationSerializer, StationSerializer
