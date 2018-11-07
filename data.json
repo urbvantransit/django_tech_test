@@ -1,0 +1,66 @@
+[
+  {
+    "model": "stations.stationmodel",
+    "pk": "sta_2018102619227d07abd52",
+    "fields": {
+      "location": "loc_2018115221355d37eb3ca",
+      "order": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "stations.stationmodel",
+    "pk": "sta_2018116204290e94b2c8",
+    "fields": {
+      "location": "loc_2018116195171c189307",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "stations.locationmodel",
+    "pk": "loc_2018115221355d37eb3ca",
+    "fields": {
+      "name": "Tercero",
+      "latitude": "23.9990000000000000",
+      "longitude": "43.0000000000000000"
+    }
+  },
+  {
+    "model": "stations.locationmodel",
+    "pk": "loc_2018116195171c189307",
+    "fields": {
+      "name": "Tercersdo",
+      "latitude": "23.9990000000000000",
+      "longitude": "43.0000000000000000"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Lectura"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "Escritura"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "Todos"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 4,
+    "fields": {
+      "name": "Eliminar"
+    }
+  }
+]
