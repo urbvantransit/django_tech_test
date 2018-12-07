@@ -14,6 +14,13 @@ def create_id_for_LineModel():
 
 
 class LineModel(models.Model):
+    """ Line object is the representation of a line (a group of routes).
+
+        Fields:
+            id -- This is the unique identifier for object instance.
+            name -- This is the common identifier for a line.
+            color --  The color of the line
+    """
 
     id = models.CharField(default=create_id_for_LineModel, primary_key=True,
                           max_length=30, unique=True)
@@ -29,6 +36,15 @@ def create_id_for_RouteModel():
 
 
 class RouteModel(models.Model):
+    """ Line object is the representation of a route.
+
+        Fields:
+            id -- This is the unique identifier for object instance.
+            line -- This is the line the route belongs.
+            stations --  The stations that route goes through.
+            direction -- The direction of the route (True if forward?)
+            is_active - If the route is active
+    """
 
     id = models.CharField(default=create_id_for_RouteModel, primary_key=True,
                           max_length=30, unique=True)
