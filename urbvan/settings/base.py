@@ -46,7 +46,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.stations',
-    'apps.lines'
+    'apps.lines',
+    'apps.users'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -138,3 +139,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+# Custom User Model
+AUTH_USER_MODEL = "users.User"
