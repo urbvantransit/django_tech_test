@@ -19,9 +19,8 @@ class LocationModel(models.Model):
         Fields:
             id -- This is the unique identifier for object instance.
             name -- This is the common identifier for a physical location.
-            coordinates --  Latitude and Longuitude as string.
-                            example. "19.4094937,-99.1634261"
-            geometry -- Similar to coordinate but using with postgis
+            latitude -- Latitude of the location - decimal, i.e. -99.1634261
+            longitude -- Longitude of the location - decimal, i.e. -99.1634261
     """
 
     id = models.CharField(default=create_id_for_LocationModel, primary_key=True,
