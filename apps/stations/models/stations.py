@@ -20,3 +20,6 @@ class StationModel(models.Model):
     location = models.ForeignKey(LocationModel, on_delete=models.DO_NOTHING)
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-id', ]
