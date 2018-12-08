@@ -36,3 +36,42 @@ class LocationCreateTest(APITestCase):
 
         response = self.client.post(self.url, data, format='json')
         self.assertEquals(response.status_code, 201)
+
+    def test_retrieve_successfully(self):
+        LocationFactory()
+
+        response_1 = self.client.get(self.url)
+        response_1 = response_1.json()
+        location = response_1['body']['results'][0]
+
+        response_2 = self.client.get(self.url + location['id'])
+        response_2 = response_2.json()
+        self.assertEquals(response_2['body'].get('count'), 1)
+
+    def test_update_successfully(self):
+        LocationFactory()
+        data = {
+            "name": "Urbvan!",
+            "latitude": 19.388401,
+            "longitude": -99.227358
+        }
+
+        response_1 = self.client.get(self.url)
+        response_1 = response_1.json()
+        location = response_1['body']['results'][0]
+
+        response_2 = self.client.put(self.url + location['id'], data, format='json')
+        self.assertEquals(response_2.status_code, 200)
+        
+        response_2 = response_2.json()
+        self.assertEquals(response_2['body']['results'][0]['name'], data['name'])
+
+    def test_delete_successfully(self):
+        LocationFactory()
+
+        response_1 = self.client.get(self.url)
+        response_1 = response_1.json()
+        location = response_1['body']['results'][0]
+
+        response_2 = self.client.delete(self.url + location['id'], format='json')
+        self.assertEquals(response_2.status_code, 204)
