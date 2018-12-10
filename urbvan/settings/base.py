@@ -90,8 +90,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    'default_replica': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db_replica.sqlite3'),
+    },
 }
+
+DATABASE_ROUTERS = ['urbvan.settings.dbrouters.DefaultReplicaRouter', ]
 
 
 # Password validation
