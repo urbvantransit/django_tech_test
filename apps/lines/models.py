@@ -48,7 +48,8 @@ class RouteModel(models.Model):
 
     id = models.CharField(default=create_id_for_RouteModel, primary_key=True,
                           max_length=30, unique=True)
-    line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
+    line = models.ForeignKey(LineModel, related_name="routes",
+                             on_delete=models.DO_NOTHING)
     stations = models.ManyToManyField(StationModel)
     direction = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
