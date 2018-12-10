@@ -13,6 +13,7 @@ class LocationView(ListCreateView):
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
+    model_crud_permissions = LocationModel
 
 
 class LocationRUDView(RetrieveUpdateDestroyAPIView):
@@ -20,6 +21,7 @@ class LocationRUDView(RetrieveUpdateDestroyAPIView):
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
+    model_crud_permissions = LocationModel
 
 
 class StationView(ListCreateView):
@@ -27,6 +29,7 @@ class StationView(ListCreateView):
     queryset = StationModel.objects.all()
     schema_class = StationSchema
     serializer_class = StationSerializer
+    model_crud_permissions = StationModel
 
 
 class StationRUDView(RetrieveUpdateDestroyAPIView):
@@ -34,3 +37,4 @@ class StationRUDView(RetrieveUpdateDestroyAPIView):
     queryset = StationModel.objects.all()
     schema_class = StationSchema
     serializer_class = StationSerializer
+    model_crud_permissions = StationModel

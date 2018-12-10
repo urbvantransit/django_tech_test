@@ -1,9 +1,10 @@
 # coding: utf8
+from functools import partial
+
 from django.db import models
 
 from apps.utils import create_id
-
-from functools import partial
+from apps.users.user_types import USER_TYPES as UT
 
 
 def create_id_for_LocationModel():
@@ -22,6 +23,12 @@ class LocationModel(models.Model):
             latitude -- Latitude of the location - decimal, i.e. -99.1634261
             longitude -- Longitude of the location - decimal, i.e. -99.1634261
     """
+    MODEL_CRUD_PERMISSIONS = {
+        "create": [ UT["supervisor"], UT["driver"] ], 
+        "retrieve": [ UT["supervisor"], UT["driver"], UT["passenger"] ], 
+        "update": [ UT["supervisor"], UT["driver"] ], 
+        "delete": [ UT["supervisor"], UT["driver"] ], 
+    }
 
     id = models.CharField(default=create_id_for_LocationModel, primary_key=True,
                           max_length=30, unique=True)

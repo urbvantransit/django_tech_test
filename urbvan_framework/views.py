@@ -7,6 +7,7 @@ from .mixins import (CreateModelMixin, ListModelMixin,
     UpdateModelMixin, RetrieveModelMixin)
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
+from .permissions import ModelCRUDPermission
 
 
 class CreateAPIView(CreateModelMixin, GenericAPIView):
@@ -14,7 +15,7 @@ class CreateAPIView(CreateModelMixin, GenericAPIView):
     Concrete view for creating a model instance.
     """
     authentication_classes = (CustomTokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, ModelCRUDPermission,)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
@@ -26,7 +27,7 @@ class ListAPIView(ListModelMixin, GenericAPIView):
     """
 
     authentication_classes = (CustomTokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, ModelCRUDPermission,)
 
     pagination_class = PaginationResponse
 
@@ -42,7 +43,7 @@ class RetrieveUpdateDestroyAPIView(RetrieveModelMixin,
     Concrete view for retrieving, updating or deleting a model instance.
     """
     authentication_classes = (CustomTokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, ModelCRUDPermission,)
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
