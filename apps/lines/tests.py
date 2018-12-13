@@ -105,7 +105,7 @@ class RouteListCreateTest(APITestCase):
         )
 
     def test_list(self):
-        route = RouteFactory(stations=[StationFactory()])
+        route = RouteFactory()
         response = self.client.get(self.url)
         response = response.json()
         self.assertEquals(response['body'].get('count'), 1)

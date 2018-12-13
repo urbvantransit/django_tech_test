@@ -14,5 +14,6 @@ class StationSchema(Schema):
 
     id = fields.String()
     location = fields.Nested(LocationSchema)
+    route = fields.Nested('apps.lines.v1.schemas.RouteSchema')
     order = fields.Integer()
     is_active = fields.Boolean()

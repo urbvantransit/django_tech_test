@@ -4,7 +4,7 @@
 from django.db import models
 from apps.utils import create_id
 from .lines import LineModel
-from apps.stations.models.stations import StationModel
+from apps.stations.models import LocationModel
 
 class RouteModel(models.Model):
     """
@@ -18,7 +18,7 @@ class RouteModel(models.Model):
     id = models.CharField(default=create_id('route_'), primary_key=True,
                           max_length=30, unique=True)
     line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
-    stations = models.ManyToManyField(StationModel, blank=True)
+    stations = models.ManyToManyField(LocationModel, through="stations.StationModel", blank=True)
     direction = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
 

@@ -1,5 +1,7 @@
 # coding: utf8
 import factory
+
+from apps.stations.factories import LocationFactory
 from .models import (LineModel, RouteModel)
 
 

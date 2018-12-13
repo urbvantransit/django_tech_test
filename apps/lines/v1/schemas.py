@@ -1,7 +1,7 @@
 # coding: utf8
 from marshmallow import (Schema, fields)
 
-from apps.stations.v1.schemas import StationSchema
+from apps.stations.v1.schemas import LocationSchema
 
 
 class LineSchema(Schema):
@@ -22,7 +22,7 @@ class RouteSchema(Schema):
 
     id = fields.String()
     line = fields.Nested(LineSchema)
-    stations = fields.Nested(StationSchema, many=True, required=False)
+    stations = fields.Nested(LocationSchema, many=True, required=False)
     direction = fields.Boolean()
     is_active = fields.Boolean()
 
