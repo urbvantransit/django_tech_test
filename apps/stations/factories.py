@@ -1,7 +1,6 @@
 # coding: utf8
 import factory
-
-from .models import LocationModel
+from .models import (LocationModel, StationModel)
 
 
 class LocationFactory(factory.django.DjangoModelFactory):
@@ -12,3 +11,22 @@ class LocationFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('slug')
     latitude = factory.Faker('latitude')
     longitude = factory.Faker('longitude')
+
+class DummyLocationFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = LocationModel
+
+    name = 'Dummy Location'
+    latitude = 0.0
+    longitude = 0.0
+
+class StationFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = StationModel
+
+    location = factory.SubFactory(DummyLocationFactory)
+
+    order = 0
+    is_active = True

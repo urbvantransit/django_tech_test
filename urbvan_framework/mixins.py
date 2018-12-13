@@ -6,7 +6,9 @@ from .utils import (render_to_response, render_response_error)
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
-
+    """
+        Mixin for the Create View
+    """
     def create(self, request, *args, **kwargs):
 
         serializer = self.get_serializer(data=request.data)
@@ -37,15 +39,45 @@ class CreateModelMixin(mixins.CreateModelMixin):
 
 
 class ListModelMixin(object):
+    """
+        Mixin for the List View
+    """
 
     def list(self, request, *args, **kwargs):
-
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)
-
         page = self.paginate_queryset(queryset)
         schema = self.schema_class(many=True)
 
         schema = schema.dump(page).data
 
         return self.get_paginated_response(schema)
+
+
+class RetrieveModelMixin(mixins.RetrieveModelMixin):
+    """
+        Mixin for the Create View
+    """
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+class UpdateModelMixin(mixins.UpdateModelMixin):
+    """
+        Mixin for the Create View
+    """
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+class DestroyModelMixin(mixins.DestroyModelMixin):
+    """
+        Mixin for the Create View
+    """
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)

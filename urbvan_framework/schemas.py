@@ -23,7 +23,9 @@ class BaseBodySchema(Schema):
 
     links = fields.Nested(
         BaseBodyLinkSchema(),
-        default=BaseBodyLinkSchema().dump({}).data
+        #BUG: default=BaseBodyLinkSchema().dump({}).data
+        #FIX: Delete the wrong data attribute
+        default=BaseBodyLinkSchema().dump({})
     )
     count = fields.Integer()
     results = fields.List(fields.Dict())

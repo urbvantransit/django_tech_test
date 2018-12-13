@@ -1,13 +1,19 @@
 # coding: utf8
-from rest_framework.generics import GenericAPIView
+from django.http import Http404
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from .mixins import (CreateModelMixin, ListModelMixin)
+from .mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin)
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
 
 
-class CreateAPIView(CreateModelMixin, GenericAPIView):
+class CreateAPIView(CreateModelMixin, generics.GenericAPIView):
     """
     Concrete view for creating a model instance.
     """
@@ -18,7 +24,7 @@ class CreateAPIView(CreateModelMixin, GenericAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class ListAPIView(ListModelMixin, GenericAPIView):
+class ListAPIView(ListModelMixin, generics.GenericAPIView):
     """
     Concrete view for listing a queryset.
     """
@@ -34,3 +40,23 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 class ListCreateView(CreateAPIView, ListAPIView):
     pass
+
+
+class DetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Concrete view for Retrieve, update or delete an instance with permissions.
+    """
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)

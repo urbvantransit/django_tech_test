@@ -46,7 +46,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.stations',
-    'apps.lines'
+    'apps.lines',
+    'urbvan_test_frontend'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -125,10 +126,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+#FIX: Added STATIC config
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
 
 
