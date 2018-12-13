@@ -8,7 +8,6 @@ class LocationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = LocationModel
 
-    id = create_id('loc_')
     name = factory.Faker('slug')
     latitude = factory.Faker('latitude')
     longitude = factory.Faker('longitude')

@@ -4,19 +4,21 @@
 
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-
+from .exceptions import MultipleActiveRouteException
 from .routes import RouteModel
 
 
 @receiver(pre_save, sender=RouteModel)
-def pre_save_routes(sender,**kwargs):
+def pre_save_route(sender,**kwargs):
     """
     :param sender: The sender class
     :param kwargs: parameter collection containing the saved instance
     :return: None
     Check if the line has already an active route
     """
-    # line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
-    # stations = models.ManyToManyField(StationModel)
-    # direction = models.BooleanField(default=True)
-    # is_active = models.BooleanField(default=True)
+    instance = kwargs.get('instance')
+    if instance.is_active and RouteModel.objects.filter(line_id=instance.line_id,
+                                 is_active=True)\
+                         .exclude(id=instance.id or -1).exists():
+
+        raise MultipleActiveRouteException()

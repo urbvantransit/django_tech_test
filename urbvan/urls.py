@@ -10,6 +10,7 @@ from urbvan_test_frontend import urls as urbvan_test_frontend_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', views.obtain_auth_token),
     # API CRUD URLS
     path('v1/locations/', include(urlpatterns_v1_locations)),

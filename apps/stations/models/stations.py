@@ -16,7 +16,7 @@ class StationModel(models.Model):
             is_active -- the station is active
     """
     class Meta:
-        ordering = ['id']
+        ordering = ['route_id','-is_active','order']
         verbose_name = 'station'
         verbose_name_plural = 'stations'
 

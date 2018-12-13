@@ -35,7 +35,9 @@ RUN pip3 install -r /home/docker/django_tech_test/urbvan/requirements/base.txt
 # Copy the django_tech_test source code
 COPY . /home/docker/django_tech_test/
 
-
-EXPOSE 80
-
-CMD ["supervisord", "-n"]
+#
+#EXPOSE 80
+#
+#CMD ["supervisord", "-n"]
+EXPOSE 8000
+CMD ["python", "/home/docker/django_tech_test/manage.py", "runserver", "0.0.0.0:8000"]
