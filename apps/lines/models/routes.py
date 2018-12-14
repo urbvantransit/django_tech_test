@@ -6,6 +6,7 @@ from apps.utils import create_id
 from .lines import LineModel
 from apps.stations.models import LocationModel
 
+
 class RouteModel(models.Model):
     """
         RouteModel: Django model for a Route of a line
@@ -22,5 +23,6 @@ class RouteModel(models.Model):
     direction = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
 
+    # TODO: Change the direction boolean field for a more descriptive type like Char field with choices
     def __str__(self):
-        return ('Route {} - {}'.format(self.line,self.direction))
+        return 'Route {} - {}'.format(self.line, self.direction)

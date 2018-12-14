@@ -1,8 +1,6 @@
 # coding: utf8
 from django.contrib import admin
 from django.urls import (include, path)
-from django.views.generic import TemplateView
-
 from rest_framework.authtoken import views
 from apps.stations.urls import urlpatterns_v1_locations, urlpatterns_v1_stations
 from apps.lines.urls import urlpatterns_v1_lines, urlpatterns_v1_routes
@@ -12,6 +10,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', views.obtain_auth_token),
+    # TODO: Implement djoser authentication
+    # path('api-auth/', include('djoser.urls')),
+    # path('api-auth/', include('djoser.urls.authtoken')),
     # API CRUD URLS
     path('v1/locations/', include(urlpatterns_v1_locations)),
     path('v1/stations/', include(urlpatterns_v1_stations)),

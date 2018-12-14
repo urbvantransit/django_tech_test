@@ -23,6 +23,8 @@ class LocationModel(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.DecimalField(max_digits=19, decimal_places=16)
     longitude = models.DecimalField(max_digits=19, decimal_places=16)
+    # TODO: Change database backend from SQLite to Postgres + PostGis
+    # TODO: Change the fields latitude and longitude to a GeoDjango Point field
 
     def __str__(self):
         return self.name

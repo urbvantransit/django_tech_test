@@ -9,16 +9,16 @@ from .routes import RouteModel
 
 
 @receiver(pre_save, sender=RouteModel)
-def pre_save_route(sender,**kwargs):
+def pre_save_route(sender, **kwargs):
     """
+    Check if the line has already an active route
     :param sender: The sender class
     :param kwargs: parameter collection containing the saved instance
     :return: None
-    Check if the line has already an active route
     """
     instance = kwargs.get('instance')
     if instance.is_active and RouteModel.objects.filter(line_id=instance.line_id,
-                                 is_active=True)\
-                         .exclude(id=instance.id or -1).exists():
+                                                        is_active=True)\
+                                                .exclude(id=instance.id or -1).exists():
 
         raise MultipleActiveRouteException()

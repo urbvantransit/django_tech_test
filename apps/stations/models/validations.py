@@ -11,14 +11,15 @@ from .stations import StationModel
 @receiver(pre_save, sender=StationModel)
 def pre_save_station(sender,**kwargs):
     """
+    Check if the station is already included in a route
     :param sender: The sender class
     :param kwargs: parameter collection containing the saved instance
     :return: None
-    Check if the station is already included in a route
     """
     instance = kwargs.get('instance')
-    if instance.is_active and instance.route.stationmodel_set.filter(location_id=instance.location_id,
-                                                    is_active=True)\
-            .exclude(id=instance.id).exists():
+    if instance.is_active and \
+        instance.route.stationmodel_set.filter(location_id=instance.location_id,
+                                                is_active=True)\
+                                        .exclude(id=instance.id).exists():
 
         raise DuplicatedActiveStationException()

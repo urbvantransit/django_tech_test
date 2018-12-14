@@ -41,10 +41,13 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    #TODO: Implement djoser authentication
+    #'djoser',
 ]
 
 LOCAL_APPS = [
+    'apps.users',
     'apps.stations',
     'apps.lines',
     'urbvan_test_frontend'
@@ -142,6 +145,11 @@ STATIC_URL = '/static/'
 # Django rest framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'urbvan_framework.authentication.CustomTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        # TODO: Implement DjangoModelPermissions wit djoser
+        #'rest_framework.permissions.DjangoModelPermissions',
     )
 }

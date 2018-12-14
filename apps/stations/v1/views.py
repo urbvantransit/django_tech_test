@@ -19,7 +19,7 @@ class LocationDetailView(DetailView):
     """
         Detail view for thew Location model
     """
-    queryset = LocationModel.objects.all()
+    queryset = LocationModel.objects.none()
     model = LocationModel
     schema_class = LocationSchema
     serializer_class = LocationSerializer
@@ -39,7 +39,7 @@ class StationDetailView(DetailView):
     """
         Detail view for thew Station model
     """
-    queryset = StationModel.objects.all()
+    queryset = StationModel.objects.none()
     model = StationModel
     schema_class = StationSchema
     serializer_class = StationSerializer

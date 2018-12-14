@@ -1,6 +1,6 @@
 # coding: utf8
 import factory
-from .models import (LocationModel, StationModel, create_id)
+from .models import (LocationModel, StationModel)
 
 
 class LocationFactory(factory.django.DjangoModelFactory):
@@ -12,6 +12,7 @@ class LocationFactory(factory.django.DjangoModelFactory):
     latitude = factory.Faker('latitude')
     longitude = factory.Faker('longitude')
 
+
 class DummyLocationFactory(factory.django.DjangoModelFactory):
 
     class Meta:
@@ -20,6 +21,7 @@ class DummyLocationFactory(factory.django.DjangoModelFactory):
     name = 'Dummy Location'
     latitude = 0.0
     longitude = 0.0
+
 
 class StationFactory(factory.django.DjangoModelFactory):
 

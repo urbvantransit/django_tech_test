@@ -42,7 +42,6 @@ class ListModelMixin(object):
     """
         Mixin for the List View
     """
-
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)
@@ -71,9 +70,9 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-
     def patch(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
 
 class DestroyModelMixin(mixins.DestroyModelMixin):
     """

@@ -15,8 +15,8 @@ class RouteSchema(Schema):
     class Meta:
         fields = ('id',
                   'line',
-                  #TODO: Add the stations many to many field to the serialization
-                  #'stations',
+                  # TODO: Add the stations many to many field to the serialization
+                  # 'stations',
                   'direction',
                   'is_active')
 
@@ -25,4 +25,3 @@ class RouteSchema(Schema):
     stations = fields.Nested(LocationSchema, many=True, required=False)
     direction = fields.Boolean()
     is_active = fields.Boolean()
-

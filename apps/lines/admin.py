@@ -9,6 +9,7 @@ class StationsInline(admin.StackedInline):
     extra = 1
     fk_name = 'route'
 
+
 class RouteModelAdmin(admin.ModelAdmin):
     save_on_top = True
     inlines = [StationsInline]

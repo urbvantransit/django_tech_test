@@ -13,14 +13,16 @@ class LineView(ListCreateView):
     schema_class = LineSchema
     serializer_class = LineSerializer
 
+
 class LineDetailView(DetailView):
     """
         Detail view for thew Line model
     """
-    queryset = LineModel.objects.all()
+    queryset = LineModel.objects.none()
     model = LineModel
     schema_class = LineSchema
     serializer_class = LineSerializer
+
 
 class RouteView(ListCreateView):
     """
@@ -30,11 +32,12 @@ class RouteView(ListCreateView):
     schema_class = RouteSchema
     serializer_class = RouteSerializer
 
+
 class RouteDetailView(DetailView):
     """
         Detail view for thew Line model
     """
-    queryset = RouteModel.objects.all()
+    queryset = RouteModel.objects.none()
     model = RouteModel
     schema_class = RouteSchema
     serializer_class = RouteSerializer
