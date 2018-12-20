@@ -1,0 +1,24 @@
+<h1>Lines</h1>
+
+<table border="1">
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Color</th>
+    <th>Update</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for line in object_list %}
+    <tr>
+    <td>{{ line.name }}</td>
+    <td>{{ line.color }}</td>
+    <td><a href="{% url 'line_model_update_view' line.id %}">Update</a></td>
+    <td><a href="{% url 'line_model_delete_view' line.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url 'line_model_create_view' %}">New</a>
