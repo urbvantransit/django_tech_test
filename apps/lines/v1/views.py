@@ -76,7 +76,7 @@ class RouteModelListView(ListAPIView):
 class RouteModelDetailView(RetrieveAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    permission_classes = (IsAuthenticated, IsStaffUser, IsSuperUser)
+    permission_classes = (IsStaffUser, )
 
     queryset = RouteModel.objects.all()
     schema_class = RouteSchema

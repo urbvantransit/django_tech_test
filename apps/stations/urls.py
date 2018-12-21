@@ -10,9 +10,9 @@ urlpatterns_v1_locations = ([
 ], 'locations')
 
 
-urls_stations = [
+urls_stations = ([
     path('stations/', StationModelListView.as_view(), name="stations-all"),
     path('stations/<str:pk>/', StationModelDetailView.as_view(), name="stations-detail"),
-    path('stations/create', StationModelCreateView.as_view(), name="stations-detail"),
+    path('stations/create', StationModelCreateView.as_view(), name="stations-create"),
     path('stations/delete/<str:pk>', StationModelDeleteView.as_view(), name="stations-delete"),
-]
+], 'stations')
