@@ -22,6 +22,6 @@ ADD . /code/
 
 # Run migrations and start server
 CMD python manage.py migrate
-CMD python manage.py runserver 0.0.0.0:7000 --settings=urbvan.settings.base
-EXPOSE 7000
+CMD python manage.py runserver 0.0.0.0:8000 --settings=urbvan.settings.base
+EXPOSE 8000
 
