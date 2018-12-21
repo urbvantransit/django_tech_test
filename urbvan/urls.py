@@ -11,6 +11,6 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('v1/locations/', include(urlpatterns_v1_locations)),
     path('api/v1/', include(urls_stations)),
-    path('api/v1/', include(urls))
+    path('api/v1/', include(urls), name='lines')
 
 ]
