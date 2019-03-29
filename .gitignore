@@ -79,4 +79,4 @@ notebooks/
 
 Pycharm
 .idea/
-urbvan/db.sqlite3
+src/urbvan/db.sqlite3
