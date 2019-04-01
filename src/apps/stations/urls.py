@@ -12,4 +12,18 @@ urlpatterns_v1_locations = ([
         views_v1.LocationDetailView.as_view(),
         name='v1_detail_location'
     )
-], 'locations')
+    ], 'locations',
+)
+
+
+urlpatterns_v1_stations = ([
+    path(
+        '', views_v1.StationView.as_view(), name='v1_list_station'
+    ),
+    path(
+        '<str:pk>',
+        views_v1.StationDetailView.as_view(),
+        name='v1_detail_station'
+    )
+    ], 'stations'
+)

@@ -17,7 +17,7 @@ class LocationModel(models.Model):
         Fields:
             id -- This is the unique identifier for object instance.
             name -- This is the common identifier for a physical location.
-            coordinates --  Latitude and Longuitude as string.
+            coordinates --  Latitude and Longitude as string.
                             example. "19.4094937,-99.1634261"
             geometry -- Similar to coordinate but using with postgis
     """

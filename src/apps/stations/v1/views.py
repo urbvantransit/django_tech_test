@@ -1,9 +1,9 @@
 # coding: utf8
 from urbvan_framework.views import DetailView, ListCreateView
 
-from .schemas import LocationSchema
-from .serializers import LocationSerializer
-from ..models import LocationModel
+from .schemas import LocationSchema, StationSchema
+from .serializers import LocationSerializer, StationSerializer
+from ..models import LocationModel, StationModel
 
 
 class BaseLocationView(object):
@@ -17,4 +17,18 @@ class LocationView(BaseLocationView, ListCreateView):
 
 
 class LocationDetailView(BaseLocationView, DetailView):
+    pass
+
+
+class BaseStationView(object):
+    queryset = StationModel.objects.all().order_by('order')
+    schema_class = StationSchema
+    serializer_class = StationSerializer
+
+
+class StationView(BaseStationView, ListCreateView):
+    pass
+
+
+class StationDetailView(BaseStationView, DetailView):
     pass
