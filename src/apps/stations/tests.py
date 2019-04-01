@@ -1,31 +1,29 @@
 # coding: utf8
 from django.urls import reverse
 
+from rest_framework import status
 from rest_framework.test import APITestCase
 
 from .factories import LocationFactory
 from ..users.factories import TokenFactory, UserFactory
 
 
-class LocationCreateTest(APITestCase):
-
-    url = reverse("locations:v1_list_create_location")
+class LocationTest(APITestCase):
+    url = reverse("locations:v1_list_location")
 
     def setUp(self):
         self.user = UserFactory()
         self.user_token = TokenFactory(user=self.user)
-
         self.client.credentials(
             HTTP_AUTHORIZATION="Urbvan {}".format(self.user_token.key)
         )
 
-    def test_list(self):
+    def test_list_successfully(self):
         LocationFactory()
-
         response = self.client.get(self.url)
-        response = response.json()
-
-        self.assertEquals(response['body'].get('count'), 1)
+        response_data = response.json()
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEquals(response_data['body'].get('count'), 1)
 
     def test_create_successfully(self):
         data = {
@@ -33,6 +31,38 @@ class LocationCreateTest(APITestCase):
             "latitude": 19.388401,
             "longitude": -99.227358
         }
-
         response = self.client.post(self.url, data, format='json')
-        self.assertEquals(response.status_code, 201)
+        self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+
+    def test_retrieve_successfully(self):
+        location = LocationFactory()
+        url = reverse(
+            "locations:v1_detail_location", kwargs={'pk': location.id}
+        )
+        response = self.client.get(url, format='json')
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data['body']['results'][0]['id'], location.id
+        )
+
+    def test_update_successfully(self):
+        location = LocationFactory()
+        url = reverse(
+            "locations:v1_detail_location", kwargs={'pk': location.id}
+        )
+        data = {"name": "New name"}
+        response = self.client.patch(url, data, format='json')
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data['body']['results'][0]['name'], data['name']
+        )
+
+    def test_delete_successfully(self):
+        location = LocationFactory()
+        url = reverse(
+            "locations:v1_detail_location", kwargs={'pk': location.id}
+        )
+        response = self.client.delete(url, format='json')
+        self.assertEquals(
+            response.status_code, status.HTTP_204_NO_CONTENT
+        )

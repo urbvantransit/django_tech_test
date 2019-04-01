@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 
 class BaseErrorSchema(Schema):
-
     code = fields.Integer()
     message = fields.String()
     field = fields.String()
@@ -14,13 +13,11 @@ class BaseErrorSchema(Schema):
 
 
 class BaseBodyLinkSchema(Schema):
-
     next = fields.String(default=None)
     previous = fields.String(default=None)
 
 
 class BaseBodySchema(Schema):
-
     links = fields.Nested(
         BaseBodyLinkSchema(),
         default=BaseBodyLinkSchema().dump({}).data
@@ -38,13 +35,11 @@ class BaseBodySchema(Schema):
 
 
 class BaseResponseSchema(Schema):
-
     errors = fields.Nested(BaseErrorSchema, many=True, default=[])
     body = fields.Nested(BaseBodySchema, default={})
 
 
 class PaginationResponse(pagination.PageNumberPagination):
-
     page_size = 25
     page_size_query_param = 'page_size'
     max_page_size = 100

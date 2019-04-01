@@ -4,6 +4,13 @@ from django.db import models
 from ...utils import create_id
 
 
+def create_location_id():
+    """
+    Function for create ID for location model
+    """
+    return create_id('loc_')
+
+
 class LocationModel(models.Model):
     """ Location object is the representation of physical station
 
@@ -14,9 +21,8 @@ class LocationModel(models.Model):
                             example. "19.4094937,-99.1634261"
             geometry -- Similar to coordinate but using with postgis
     """
-
     id = models.CharField(
-        default=create_id('loc_'),
+        default=create_location_id,
         primary_key=True,
         max_length=30,
         unique=True

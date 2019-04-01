@@ -5,9 +5,23 @@ from apps.utils import create_id
 from django.db import models
 
 
+def create_line_id():
+    """
+    Function for create ID for line model
+    """
+    return create_id('line_')
+
+
+def create_route_id():
+    """
+    Function for create ID for route model
+    """
+    return create_id('route_')
+
+
 class LineModel(models.Model):
     id = models.CharField(
-        default=create_id('line_'),
+        default=create_line_id,
         primary_key=True,
         max_length=30,
         unique=True
@@ -18,7 +32,7 @@ class LineModel(models.Model):
 
 class RouteModel(models.Model):
     id = models.CharField(
-        default=create_id('route_'),
+        default=create_route_id,
         primary_key=True,
         max_length=30,
         unique=True
