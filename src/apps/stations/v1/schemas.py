@@ -1,5 +1,5 @@
 # coding: utf8
-from marshmallow import (Schema, fields)
+from marshmallow import Schema, fields
 
 
 class LocationSchema(Schema):

@@ -4,7 +4,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .factories import LocationFactory
+from .factories import LocationFactory, StationFactory
 from ..users.factories import TokenFactory, UserFactory
 
 
@@ -73,15 +73,13 @@ class LocationTest(BaseStationsTest, APITestCase):
 
 class StationTest(BaseStationsTest, APITestCase):
     url = reverse("stations:v1_list_station")
-    url_detail = reverse(
-        "stations:v1_detail_station", kwargs={'pk': 'unknown'}
-    )
 
     def test_list_successfully(self):
+        StationFactory()
         response = self.client.get(self.url)
         response_data = response.json()
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        self.assertEquals(response_data['body'].get('count'), 0)
+        self.assertEquals(response_data['body'].get('count'), 1)
 
     def test_create_successfully(self):
         location = LocationFactory()
@@ -93,16 +91,33 @@ class StationTest(BaseStationsTest, APITestCase):
         response = self.client.post(self.url, data, format='json')
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
-    def test_retrieve_not_found(self):
-        response = self.client.get(self.url_detail, format='json')
-        self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_update_not_found(self):
-        response = self.client.patch(self.url_detail, {}, format='json')
-        self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_delete_not_found(self):
-        response = self.client.delete(self.url_detail, format='json')
-        self.assertEquals(
-            response.status_code, status.HTTP_404_NOT_FOUND
+    def test_retrieve_successfully(self):
+        station = StationFactory()
+        url = reverse(
+            "stations:v1_detail_station", kwargs={'pk': station.id}
         )
+        response = self.client.get(url, format='json')
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data['body']['results'][0]['id'], station.id
+        )
+
+    def test_update_successfully(self):
+        station = StationFactory()
+        url = reverse(
+            "stations:v1_detail_station", kwargs={'pk': station.id}
+        )
+        data = {'order': '7'}
+        response = self.client.patch(url, data, format='json')
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data['body']['results'][0]['order'], data['order']
+        )
+
+    def test_delete_successfully(self):
+        station = StationFactory()
+        url = reverse(
+            "stations:v1_detail_station", kwargs={'pk': station.id}
+        )
+        response = self.client.delete(url, format='json')
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)

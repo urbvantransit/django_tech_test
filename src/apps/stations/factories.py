@@ -14,8 +14,8 @@ class LocationFactory(factory.django.DjangoModelFactory):
 
 
 class StationFactory(factory.django.DjangoModelFactory):
-    order = factory.Faker(1)
-    is_active = factory.Faker(True)
+    order = factory.Sequence(lambda n: '%02d' % n)
+    is_active = factory.Faker('boolean')
     location = factory.SubFactory(LocationFactory)
 
     class Meta:

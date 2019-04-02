@@ -1,4 +1,5 @@
 # coding: utf8
+from apps.lines.urls import urlpatterns_v1_lines, urlpatterns_v1_routes
 from apps.stations.urls import (
     urlpatterns_v1_locations, urlpatterns_v1_stations
 )
@@ -12,6 +13,8 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', views.obtain_auth_token),
-    path('api/v1/locations/', include(urlpatterns_v1_locations)),
-    path('api/v1/stations/', include(urlpatterns_v1_stations)),
+    path('v1/lines/', include(urlpatterns_v1_lines)),
+    path('v1/locations/', include(urlpatterns_v1_locations)),
+    path('v1/routes/', include(urlpatterns_v1_routes)),
+    path('v1/stations/', include(urlpatterns_v1_stations)),
 ]
