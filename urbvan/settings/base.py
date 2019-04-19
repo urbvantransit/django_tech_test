@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.users',
     'apps.stations',
     'apps.lines'
 ]
@@ -91,6 +92,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+#Custom User Model
+
+AUTH_USER_MODEL = 'users.User'
 
 
 # Password validation
