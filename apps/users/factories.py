@@ -16,6 +16,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     is_active = True
+    is_tier3 = True
 
 
 class TokenFactory(factory.django.DjangoModelFactory):

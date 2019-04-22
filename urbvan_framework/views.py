@@ -15,7 +15,7 @@ class CreateAPIView(CreateModelMixin, GenericAPIView):
     Concrete view for creating a model instance.
     """
     authentication_classes = (CustomTokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
