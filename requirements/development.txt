@@ -1,0 +1,5 @@
+-r base.txt
+
+tox
+flake8
+factory-boy==2.11.1
