@@ -6,9 +6,16 @@ from .locations import LocationModel
 from apps.utils import create_id
 
 
+def create_station_id():
+    return create_id('sta_id')
+
+
 class StationModel(models.Model):
 
-    id = models.CharField(default=create_id('sta_'), primary_key=True,
+    class Meta:
+        ordering = ['-id']
+
+    id = models.CharField(default=create_station_id, primary_key=True,
                           max_length=30, unique=True)
     location = models.ForeignKey(LocationModel, on_delete=models.DO_NOTHING)
     order = models.IntegerField(default=0)

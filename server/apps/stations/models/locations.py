@@ -4,6 +4,10 @@ from django.db import models
 from apps.utils import create_id
 
 
+def create_location_id():
+    return create_id('loc_')
+
+
 class LocationModel(models.Model):
     """ Location object is the representation of physical station
 
@@ -15,7 +19,7 @@ class LocationModel(models.Model):
             geometry -- Similar to coordinate but using with postgis
     """
 
-    id = models.CharField(default=create_id('loc_'), primary_key=True,
+    id = models.CharField(default=create_location_id, primary_key=True,
                           max_length=30, unique=True)
     name = models.CharField(max_length=100)
     latitude = models.DecimalField(max_digits=19, decimal_places=16)
