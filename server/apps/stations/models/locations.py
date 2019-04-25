@@ -19,6 +19,9 @@ class LocationModel(models.Model):
             geometry -- Similar to coordinate but using with postgis
     """
 
+    class Meta:
+        ordering = ['-id']
+
     id = models.CharField(default=create_location_id, primary_key=True,
                           max_length=30, unique=True)
     name = models.CharField(max_length=100)
