@@ -1,0 +1,53 @@
+version: "3.2"
+
+volumes:
+  postgres_data:
+
+services:
+  # PostgreSQL
+  postgres:
+    image: postgres:9.6.0
+    ports:
+      # Bind host port 5432 to PostgreSQL port 5432
+      - 5432:5432
+    volumes:
+      # Mount the postgres data volume
+      - postgres_data:/var/lib/postgresql/data
+    environment: &postgres_env
+      LC_ALL: C.UTF-8
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: urbvan_test
+      POSTGRES_PORT: 5432
+      PGPASSWORD: docker
+
+  # Django app
+  django_dev: &django
+    image: urbvan/tech_test_dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    command: dev
+    entrypoint: /usr/src/ops/docker-entrypoint.sh
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - 8000:8000
+    environment: &django_env
+      PORT: 8000
+      # Load postgres environment
+      <<: *postgres_env
+    depends_on:
+      - postgres
+
+  django_prod:
+    <<: *django
+    image: urbvan/tech_test_prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uwsgi
+    environment:
+      WSGI_MODULE: urbvan.wsgi:application
+      # Load postgres environment
+      <<: *django_env

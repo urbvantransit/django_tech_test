@@ -77,6 +77,7 @@ project/media/
 notebooks/
 *.ipynb
 
-Pycharm
+# Pycharm
 .idea/
-urbvan/db.sqlite3
+db.sqlite3
+.vscode
