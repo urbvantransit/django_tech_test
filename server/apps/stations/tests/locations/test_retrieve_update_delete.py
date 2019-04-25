@@ -5,25 +5,25 @@ from django.urls import reverse
 
 from rest_framework import status
 
-from apps.stations.factories import StationFactory
+from apps.stations.factories import LocationFactory
 from apps.utils import APITestCaseWithClients
 
 
-class StationRetrieveUpdateDelete(APITestCaseWithClients):
+class LocationRetrieveUpdateDelete(APITestCaseWithClients):
 
     @classmethod
     def setUpTestData(cls):
-        super(cls, StationRetrieveUpdateDelete).setUpTestData()
+        super(cls, LocationRetrieveUpdateDelete).setUpTestData()
 
     def test_retrieve_by_pk(self):
-        station = StationFactory()
+        location = LocationFactory()
         items = randint(1, 100)
         for i in range(items):
-            StationFactory()
+            LocationFactory()
         
-        retrieve_update_delete = reverse("stations:v1_retrieve_update_delete",
+        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
                                          kwargs={
-                                             "pk": station.id
+                                             "pk": location.id
                                          })
 
         response = self.auth_client.get(retrieve_update_delete)
@@ -33,10 +33,10 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
         self.assertEquals(content['body'].get('count'), 1)
 
     def test_update_by_pk(self):
-        station = StationFactory()
-        retrieve_update_delete = reverse("stations:v1_retrieve_update_delete",
+        location = LocationFactory()
+        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
                                          kwargs={
-                                             "pk": station.id
+                                             "pk": location.id
                                          })
 
         data = {
@@ -51,10 +51,10 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
         self.assertEquals(content['body'].get('count'), 1)
 
     def test_delete_by_pk(self):
-        station = StationFactory()
-        retrieve_update_delete = reverse("stations:v1_retrieve_update_delete",
+        location = LocationFactory()
+        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
                                          kwargs={
-                                             "pk": station.id
+                                             "pk": location.id
                                          })
 
         response = self.auth_client.delete(retrieve_update_delete)

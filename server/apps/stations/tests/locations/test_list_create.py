@@ -1,4 +1,6 @@
 # coding: utf-8
+from random import randint
+
 from django.urls import reverse
 
 from rest_framework import status
@@ -16,13 +18,15 @@ class LocationListCreateTest(APITestCaseWithClients):
         super(cls, LocationListCreateTest).setUpTestData()
 
     def test_list(self):
-        LocationFactory()
+        items = randint(1, 100)
+        for i in range(items):
+            LocationFactory()
 
         response = self.auth_client.get(self.url)
         content = response.json()
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        self.assertEquals(content['body'].get('count'), 1)
+        self.assertEquals(content['body'].get('count'), items)
 
     def test_create_successfully(self):
         data = {
@@ -32,4 +36,8 @@ class LocationListCreateTest(APITestCaseWithClients):
         }
 
         response = self.auth_client.post(self.url, data, format='json')
+        content = response.json()
+
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+        self.assertEquals(content['body'].get('count'), 1)
+        self.assertDictContainsSubset(data, content['body'].get('results')[0])
