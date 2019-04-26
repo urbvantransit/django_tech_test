@@ -1,5 +1,5 @@
 # coding: utf-8
-from urbvan_framework.views import ListCreateView, RetrieveAPIView
+from urbvan_framework.views import ListCreateView, RetrieveUpdateDestroyView
 
 from apps.stations.v1.schemas import LocationSchema, StationSchema
 from apps.stations.v1.serializers import LocationSerializer, StationSerializer
@@ -21,14 +21,14 @@ class StationListCreateView(ListCreateView):
     serializer_class = StationSerializer
 
 
-class LocationRetrieveUpdateDeleteView(RetrieveAPIView):
+class LocationRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
     queryset = LocationModel.objects.all()
     schema_class = LocationSchema
     serializer_class = LocationSerializer
 
 
-class StationRetrieveUpdateDeleteView(RetrieveAPIView):
+class StationRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
     queryset = StationModel.objects.select_related('location').all()
     schema_class = StationSchema

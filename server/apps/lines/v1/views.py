@@ -1,5 +1,5 @@
 # coding: utf-8
-from urbvan_framework.views import ListCreateView, RetrieveAPIView
+from urbvan_framework.views import ListCreateView, RetrieveUpdateDestroyView
 
 from apps.lines.v1.schemas import LineSchema, RouteSchema
 from apps.lines.v1.serializers import LineSerializer, RouteSerializer
@@ -21,14 +21,14 @@ class RouteListCreateView(ListCreateView):
     serializer_class = RouteSerializer
 
 
-class LineRetrieveUpdateDeleteView(RetrieveAPIView):
+class LineRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
     queryset = LineModel.objects.all()
     schema_class = LineSchema
     serializer_class = LineSerializer
 
 
-class RouteRetrieveUpdateDeleteView(RetrieveAPIView):
+class RouteRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
     queryset = RouteModel.objects.prefetch_related('stations').select_related('line').all()
     schema_class = RouteSchema

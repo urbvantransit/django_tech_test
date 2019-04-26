@@ -5,7 +5,8 @@ from django.urls import reverse
 
 from rest_framework import status
 
-from apps.lines.factories import RouteFactory
+from apps.lines.factories import LineFactory, RouteFactory
+from apps.stations.factories import StationFactory
 from apps.utils import APITestCaseWithClients
 
 
@@ -36,6 +37,14 @@ class RouteRetrieveUpdateDelete(APITestCaseWithClients):
 
     def test_update_by_pk(self):
         route = RouteFactory()
+        line = LineFactory()
+        
+        station_items = randint(1, 100)
+        stations = []
+        for i in range(station_items):
+            station = StationFactory()
+            stations.append(station.id)
+
         retrieve_update_delete = reverse(
             "routes:v1_retrieve_update_delete_route",
             kwargs={
@@ -43,7 +52,10 @@ class RouteRetrieveUpdateDelete(APITestCaseWithClients):
             })
 
         data = {
-            "order": 2
+            "line": line.id,
+            "stations": stations,
+            "direction": False,
+            "is_active": False
         }
 
         response = self.auth_client.patch(
@@ -52,6 +64,10 @@ class RouteRetrieveUpdateDelete(APITestCaseWithClients):
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         self.assertEquals(content['body'].get('count'), 1)
+        self.assertDictContainsSubset({
+            "direction": False,
+            "is_active": False
+        }, content['body'].get('results')[0])
 
     def test_delete_by_pk(self):
         route = RouteFactory()
