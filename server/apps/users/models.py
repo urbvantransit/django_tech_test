@@ -18,7 +18,7 @@ class Permission(models.Model):
     option = models.CharField(
         max_length=1,
         choices=PERMISSION_TYPE,
-        default=READ
+        default=USER
     )
 
     def __str__(self):

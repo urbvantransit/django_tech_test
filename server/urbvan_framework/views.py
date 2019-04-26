@@ -1,6 +1,7 @@
 # coding: utf-8
 from rest_framework.generics import DestroyAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import GenericViewSet
 
 from .mixins import (
     CreateModelMixin,
@@ -68,4 +69,14 @@ class RetrieveUpdateDestroyView(RetrieveAPIView,
                                 UpdateAPIView,
                                 DestroyAPIView,
                                 GenericAPIView):
+    pass
+
+
+class ModelViewSet(
+        CreateAPIView,
+        ListAPIView,
+        RetrieveAPIView,
+        UpdateAPIView,
+        DestroyAPIView,
+        GenericViewSet):
     pass
