@@ -16,7 +16,8 @@ class LineListCreateView(ListCreateView):
 
 class RouteListCreateView(ListCreateView):
 
-    queryset = RouteModel.objects.prefetch_related('stations').select_related('line').all()
+    queryset = RouteModel.objects.prefetch_related(
+        'stations').select_related('line').all()
     schema_class = RouteSchema
     serializer_class = RouteSerializer
 
@@ -30,8 +31,7 @@ class LineRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
 class RouteRetrieveUpdateDeleteView(RetrieveUpdateDestroyView):
 
-    queryset = RouteModel.objects.prefetch_related('stations').select_related('line').all()
+    queryset = RouteModel.objects.prefetch_related(
+        'stations').select_related('line').all()
     schema_class = RouteSchema
     serializer_class = RouteSerializer
-
-    

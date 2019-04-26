@@ -78,7 +78,7 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
         if not serializer.is_valid():
             response = render_response_error(errors=serializer.errors)
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
-        
+
         try:
             self.perform_update(serializer)
         except Exception as e:

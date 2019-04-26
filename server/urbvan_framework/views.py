@@ -64,5 +64,8 @@ class UpdateAPIView(UpdateModelMixin, GenericAPIView):
         return self.partial_update(request, *args, **kwargs)
 
 
-class RetrieveUpdateDestroyView(RetrieveAPIView, UpdateAPIView, DestroyAPIView, GenericAPIView):
+class RetrieveUpdateDestroyView(RetrieveAPIView,
+                                UpdateAPIView,
+                                DestroyAPIView,
+                                GenericAPIView):
     pass

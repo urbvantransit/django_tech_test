@@ -38,7 +38,7 @@ class RouteRetrieveUpdateDelete(APITestCaseWithClients):
     def test_update_by_pk(self):
         route = RouteFactory()
         line = LineFactory()
-        
+
         station_items = randint(1, 100)
         stations = []
         for i in range(station_items):

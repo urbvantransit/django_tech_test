@@ -2,7 +2,6 @@
 from marshmallow import Schema
 from marshmallow.fields import Bool, Method, Nested, String
 
-from apps.lines.models import RouteModel
 from apps.stations.v1.schemas import StationSchema
 
 
@@ -24,5 +23,3 @@ class RouteSchema(Schema):
     def get_stations(self, instance):
         stations = instance.stations.all()
         return StationSchema(many=True).dump(stations).data
-
-    

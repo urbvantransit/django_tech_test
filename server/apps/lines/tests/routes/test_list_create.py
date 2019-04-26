@@ -36,7 +36,7 @@ class RouteListCreateTest(APITestCaseWithClients):
         for i in range(station_items):
             station = StationFactory()
             stations.append(station.id)
-        
+
         data = {
             "line": line.id,
             "stations": stations,

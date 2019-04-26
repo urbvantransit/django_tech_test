@@ -2,8 +2,6 @@
 from rest_framework import serializers
 
 from apps.lines.models import LineModel, RouteModel
-from apps.stations.models import StationModel
-from apps.stations.v1.serializers import StationSerializer
 
 
 class LineSerializer(serializers.ModelSerializer):
@@ -26,6 +24,5 @@ class RouteSerializer(serializers.ModelSerializer):
 
         for station in stations:
             instance.stations.add(station)
-        
+
         return instance
-            
