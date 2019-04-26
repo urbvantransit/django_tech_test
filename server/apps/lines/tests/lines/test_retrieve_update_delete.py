@@ -5,26 +5,27 @@ from django.urls import reverse
 
 from rest_framework import status
 
-from apps.stations.factories import StationFactory
+from apps.lines.factories import LineFactory
 from apps.utils import APITestCaseWithClients
 
 
-class StationRetrieveUpdateDelete(APITestCaseWithClients):
+class LineRetrieveUpdateDelete(APITestCaseWithClients):
 
     @classmethod
     def setUpTestData(cls):
-        super(cls, StationRetrieveUpdateDelete).setUpTestData()
+        super(cls, LineRetrieveUpdateDelete).setUpTestData()
 
     def test_retrieve_by_pk(self):
-        station = StationFactory()
+        line = LineFactory()
+
         items = randint(1, 100)
         for i in range(items):
-            StationFactory()
+            LineFactory()
 
         retrieve_update_delete = reverse(
-            "stations:v1_retrieve_update_delete_station",
+            "lines:v1_retrieve_update_delete_line",
             kwargs={
-                "pk": station.id
+                "pk": line.id
             })
 
         response = self.auth_client.get(retrieve_update_delete)
@@ -34,11 +35,11 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
         self.assertEquals(content['body'].get('count'), 1)
 
     def test_update_by_pk(self):
-        station = StationFactory()
+        line = LineFactory()
         retrieve_update_delete = reverse(
-            "stations:v1_retrieve_update_delete_station",
+            "lines:v1_retrieve_update_delete_line",
             kwargs={
-                "pk": station.id
+                "pk": line.id
             })
 
         data = {
@@ -53,11 +54,11 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
         self.assertEquals(content['body'].get('count'), 1)
 
     def test_delete_by_pk(self):
-        station = StationFactory()
+        line = LineFactory()
         retrieve_update_delete = reverse(
-            "stations:v1_retrieve_update_delete_station",
+            "lines:v1_retrieve_update_delete_line",
             kwargs={
-                "pk": station.id
+                "pk": line.id
             })
 
         response = self.auth_client.delete(retrieve_update_delete)

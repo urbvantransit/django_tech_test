@@ -20,11 +20,12 @@ class LocationRetrieveUpdateDelete(APITestCaseWithClients):
         items = randint(1, 100)
         for i in range(items):
             LocationFactory()
-        
-        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
-                                         kwargs={
-                                             "pk": location.id
-                                         })
+
+        retrieve_update_delete = reverse(
+            "locations:v1_retrieve_update_delete_location",
+            kwargs={
+                "pk": location.id
+            })
 
         response = self.auth_client.get(retrieve_update_delete)
         content = response.json()
@@ -34,10 +35,11 @@ class LocationRetrieveUpdateDelete(APITestCaseWithClients):
 
     def test_update_by_pk(self):
         location = LocationFactory()
-        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
-                                         kwargs={
-                                             "pk": location.id
-                                         })
+        retrieve_update_delete = reverse(
+            "locations:v1_retrieve_update_delete_location",
+            kwargs={
+                "pk": location.id
+            })
 
         data = {
             "order": 2
@@ -52,10 +54,11 @@ class LocationRetrieveUpdateDelete(APITestCaseWithClients):
 
     def test_delete_by_pk(self):
         location = LocationFactory()
-        retrieve_update_delete = reverse("locations:v1_retrieve_update_delete",
-                                         kwargs={
-                                             "pk": location.id
-                                         })
+        retrieve_update_delete = reverse(
+            "locations:v1_retrieve_update_delete_location",
+            kwargs={
+                "pk": location.id
+            })
 
         response = self.auth_client.delete(retrieve_update_delete)
 
