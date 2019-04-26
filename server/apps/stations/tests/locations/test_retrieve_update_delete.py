@@ -42,7 +42,9 @@ class LocationRetrieveUpdateDelete(APITestCaseWithClients):
             })
 
         data = {
-            "order": 2
+            "name": "Urbvan",
+            "latitude": 19.388401,
+            "longitude": -99.227358
         }
 
         response = self.auth_client.patch(
@@ -51,6 +53,7 @@ class LocationRetrieveUpdateDelete(APITestCaseWithClients):
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         self.assertEquals(content['body'].get('count'), 1)
+        self.assertDictContainsSubset(data, content['body'].get('results')[0])
 
     def test_delete_by_pk(self):
         location = LocationFactory()

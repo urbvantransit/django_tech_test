@@ -43,7 +43,8 @@ class LineRetrieveUpdateDelete(APITestCaseWithClients):
             })
 
         data = {
-            "order": 2
+            "name": "test_name_2",
+            "color": "0088FF"
         }
 
         response = self.auth_client.patch(
@@ -52,6 +53,7 @@ class LineRetrieveUpdateDelete(APITestCaseWithClients):
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         self.assertEquals(content['body'].get('count'), 1)
+        self.assertDictContainsSubset(data, content['body'].get('results')[0])
 
     def test_delete_by_pk(self):
         line = LineFactory()

@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from rest_framework import status
 
-from apps.stations.factories import StationFactory
+from apps.stations.factories import LocationFactory, StationFactory
 from apps.utils import APITestCaseWithClients
 
 
@@ -41,8 +41,12 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
                 "pk": station.id
             })
 
+        location = LocationFactory()
+
         data = {
-            "order": 2
+            "location": location.id,
+            "order": 1,
+            "is_active": False
         }
 
         response = self.auth_client.patch(
@@ -51,6 +55,13 @@ class StationRetrieveUpdateDelete(APITestCaseWithClients):
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         self.assertEquals(content['body'].get('count'), 1)
+        self.assertDictContainsSubset({
+            "order": 1,
+            "is_active": False
+        }, content['body'].get('results')[0])
+        self.assertDictContainsSubset({
+            "id": location.id
+        }, content['body'].get('results')[0].get('location'))
 
     def test_delete_by_pk(self):
         station = StationFactory()
