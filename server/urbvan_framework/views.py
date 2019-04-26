@@ -2,7 +2,7 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from .mixins import (CreateModelMixin, ListModelMixin)
+from .mixins import (CreateModelMixin, ListModelMixin, RetrieveModelMixin)
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
 
@@ -34,3 +34,14 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 class ListCreateView(CreateAPIView, ListAPIView):
     pass
+
+
+class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
+    """
+    Concrete view for retrieving a model instance.
+    """
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)

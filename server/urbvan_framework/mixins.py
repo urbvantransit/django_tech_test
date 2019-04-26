@@ -49,3 +49,16 @@ class ListModelMixin(object):
         schema = schema.dump(page).data
 
         return self.get_paginated_response(schema)
+
+
+class RetrieveModelMixin(object):
+
+    def retrieve(self, request, *args, **kwargs):
+
+        instance = self.get_object()
+        schema = self.schema_class()
+        
+        schema = schema.dump(instance).data
+        response = render_to_response(body=schema)
+
+        return Response(response, status=status.HTTP_200_OK)

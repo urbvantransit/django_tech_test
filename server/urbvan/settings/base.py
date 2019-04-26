@@ -137,5 +137,60 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
-    # 'DEFAULT_RENDERER_CLASSES': (),
+}
+
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+
+# logger
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': ("%(levelname)s [%(asctime)s] "
+                       "%(name)s.%(funcName)s line %(lineno)d: %(message)s"
+                       ),
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'development_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filters': ['require_debug_true'],
+            'filename': 'debug.log',
+            'formatter': 'verbose'
+        },
+        'production_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filters': ['require_debug_false'],
+            'filename': 'debug.log',
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'urbvan_tech_test': {
+            'handlers': ['development_file', 'production_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {}
+    },
 }
