@@ -3,6 +3,9 @@ version: "3.2"
 volumes:
   postgres_data:
 
+networks:
+  backend:
+
 services:
   # PostgreSQL
   postgres:
@@ -19,7 +22,22 @@ services:
       POSTGRES_USER: docker
       POSTGRES_DB: urbvan_test
       POSTGRES_PORT: 5432
-      PGPASSWORD: docker
+    networks:
+      - backend
+
+  web:
+    image: paysensei_business/paysensei_business-nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    stdin_open: true
+    ports:
+      - 80:80
+      # - 443:443
+    links:
+      - django_prod:django_prod
+    networks:
+      - backend
 
   # Django app
   django_dev: &django
@@ -37,6 +55,8 @@ services:
       PORT: 8000
       # Load postgres environment
       <<: *postgres_env
+    networks:
+      - backend
     depends_on:
       - postgres
 
