@@ -10,10 +10,6 @@ set -e
 # If not configured you'll receive this: CommandError: "0.0.0.0:" is not a valid port number or address:port pair.
 [ -z "$PORT" ] && echo "ERROR: Need to set PORT. E.g.: 8000" && exit 1;
 
-[ -z "$POSTGRES_DB" ] && echo "ERROR: Need to set POSTGRES_NAME" && exit 1;
-[ -z "$POSTGRES_USER" ] && echo "ERROR: Need to set POSTGRES_USER" && exit 1;
-[ -z "$POSTGRES_PASSWORD" ] && echo "ERROR: Need to set POSTGRES_PASSWORD" && exit 1;
-
 
 # Define help message
 show_help() {
@@ -28,7 +24,8 @@ manage          : Start manage.py
 setup_database  : Restart to a known point
 python          : Run a python command
 uwsgi           : Run uwsgi server
-tox             : Run tests and check PEP8
+test            : Run tests
+check_pep8      : Check PEP8
 help            : Show this message
 """
 }
@@ -57,7 +54,7 @@ case "$1" in
     ;;
     setup_database)
         python manage.py makemigrations
-        python manage.py makemigrations lines stations
+        python manage.py makemigrations lines stations users
         python manage.py migrate
     ;;
     python)
@@ -66,6 +63,9 @@ case "$1" in
     uwsgi)
         # Used by uwsgi.ini file to start the wsgi Django application
         [ -z "$WSGI_MODULE" ] && echo "ERROR: Need to set WSGI_MODULE. E.g.: hello.wsgi:application" && exit 1;
+        [ -z "$POSTGRES_DB" ] && echo "ERROR: Need to set POSTGRES_NAME" && exit 1;
+        [ -z "$POSTGRES_USER" ] && echo "ERROR: Need to set POSTGRES_USER" && exit 1;
+        [ -z "$POSTGRES_PASSWORD" ] && echo "ERROR: Need to set POSTGRES_PASSWORD" && exit 1;
         
         echo "Running App (uWSGI)..."
         write_uwsgi

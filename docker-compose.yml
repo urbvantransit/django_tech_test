@@ -25,8 +25,8 @@ services:
     networks:
       - backend
 
-  web:
-    image: paysensei_business/paysensei_business-nginx
+  proxy:
+    image: urbvan/tech_test_nginx
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -53,12 +53,6 @@ services:
       - 8000:8000
     environment: &django_env
       PORT: 8000
-      # Load postgres environment
-      <<: *postgres_env
-    networks:
-      - backend
-    depends_on:
-      - postgres
 
   django_prod:
     <<: *django
@@ -70,4 +64,10 @@ services:
     environment:
       WSGI_MODULE: urbvan.wsgi:application
       # Load postgres environment
+      POSTGRES_HOST: postgres
+      <<: *postgres_env
       <<: *django_env
+    networks:
+      - backend
+    depends_on:
+      - postgres
