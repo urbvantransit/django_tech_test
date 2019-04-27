@@ -1,9 +1,11 @@
+# coding: utf-8
 from rest_framework import permissions
-from users.models import Permission
+
+from apps.users.models import UserPermission
 
 
 class AdminPermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        permission = request.user.permissions.permission.option
-        return permission == Permission.ADMIN
+        permission = request.user.permissions.option
+        return permission == UserPermission.ADMIN

@@ -11,6 +11,11 @@ from .mixins import (
 )
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
+from apps.users.permissions import (
+    AdminPermission,
+    DriverPermission,
+    UserPermission
+)
 
 
 class CreateAPIView(CreateModelMixin, GenericAPIView):
@@ -79,4 +84,22 @@ class ModelViewSet(
         UpdateAPIView,
         DestroyAPIView,
         GenericViewSet):
-    pass
+
+    permission_classes_by_action = {
+        'create': [AdminPermission],
+        'list': [UserPermission],
+        'retrieve': [UserPermission],
+        'update': [DriverPermission],
+        'partial_update': [DriverPermission],
+        'destroy': [AdminPermission]
+    }
+
+    def get_permissions(self):
+        try:
+            # return permission_classes depending on `action`
+            return [permission()
+                    for permission in self.permission_classes_by_action[
+                        self.action]]
+        except KeyError:
+            # action is not set return default permission_classes
+            return [permission() for permission in self.permission_classes]

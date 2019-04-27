@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 from rest_framework.authtoken.models import Token
 
+from apps.users.models import UserPermission
+
 
 class UserFactory(factory.django.DjangoModelFactory):
 
@@ -23,3 +25,30 @@ class TokenFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Token
         django_get_or_create = ('user',)
+
+
+class AdminPermissionFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = UserPermission
+        django_get_or_create = ('user',)
+
+    option = UserPermission.ADMIN
+
+
+class DriverPermissionFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = UserPermission
+        django_get_or_create = ('user',)
+
+    option = UserPermission.DRIVER
+
+
+class UserPermissionFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = UserPermission
+        django_get_or_create = ('user',)
+
+    option = UserPermission.USER

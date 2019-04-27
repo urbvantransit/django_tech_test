@@ -11,7 +11,7 @@ from apps.utils import APITestCaseWithClients
 
 class StationListCreateTest(APITestCaseWithClients):
 
-    list_create_url = reverse("stations:v1_list_create_station")
+    url = reverse("stations:v1_list_create_station")
 
     @classmethod
     def setUpTestData(cls):
@@ -22,7 +22,7 @@ class StationListCreateTest(APITestCaseWithClients):
         for i in range(items):
             StationFactory()
 
-        response = self.auth_client.get(self.list_create_url)
+        response = self.auth_admin_client.get(self.url)
         content = response.json()
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
@@ -37,8 +37,8 @@ class StationListCreateTest(APITestCaseWithClients):
             "is_active": False
         }
 
-        response = self.auth_client.post(
-            self.list_create_url, data, format='json')
+        response = self.auth_admin_client.post(
+            self.url, data, format='json')
         content = response.json()
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
@@ -50,3 +50,35 @@ class StationListCreateTest(APITestCaseWithClients):
         self.assertDictContainsSubset({
             "id": location.id
         }, content['body'].get('results')[0].get('location'))
+
+    def test_create_by_driver_does_not_have_permission(self):
+        location = LocationFactory()
+
+        data = {
+            "location": location.id,
+            "order": 1,
+            "is_active": False
+        }
+
+        response = self.auth_driver_client.post(self.url, data, format='json')
+        content = response.json()
+
+        self.assertEquals(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEquals(content['detail'],
+                          self.USER_DOES_NOT_HAVE_PERMISSION)
+
+    def test_create_by_user_does_not_have_permission(self):
+        location = LocationFactory()
+
+        data = {
+            "location": location.id,
+            "order": 1,
+            "is_active": False
+        }
+
+        response = self.auth_client.post(self.url, data, format='json')
+        content = response.json()
+
+        self.assertEquals(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEquals(content['detail'],
+                          self.USER_DOES_NOT_HAVE_PERMISSION)

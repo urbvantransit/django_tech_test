@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 
 
-class Permission(models.Model):
+class UserPermission(models.Model):
     ADMIN = 'A'
     DRIVER = 'D'
     USER = 'U'
@@ -15,6 +15,12 @@ class Permission(models.Model):
         (USER, u"Usuario"),
     )
 
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        primary_key=True,
+        related_name='permissions',
+        on_delete=models.CASCADE
+    )
     option = models.CharField(
         max_length=1,
         choices=PERMISSION_TYPE,
@@ -23,15 +29,3 @@ class Permission(models.Model):
 
     def __str__(self):
         return self.get_option_display()
-
-
-class UserPermission(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        primary_key=True,
-        related_name='permissions'
-    )
-    permission = models.ForeignKey(Permission)
-
-    def __str__(self):
-        return self.permission.option
