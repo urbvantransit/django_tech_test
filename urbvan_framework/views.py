@@ -1,7 +1,13 @@
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import GenericViewSet
 
-from .mixins import (CreateModelMixin, ListModelMixin)
+from .mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
 
@@ -31,5 +37,32 @@ class ListAPIView(ListModelMixin, GenericAPIView):
         return self.list(request, *args, **kwargs)
 
 
-class ListCreateView(CreateAPIView, ListAPIView):
+class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
+
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+class UpdateAPIView(UpdateModelMixin, GenericAPIView):
+
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class ReadOnlyModelViewSet(ListAPIView, RetrieveAPIView, GenericViewSet):
     pass
+
+
+class WriteOnlyModelViewSet(CreateAPIView, UpdateAPIView, DestroyAPIView, GenericViewSet):
+    pass
+
+
