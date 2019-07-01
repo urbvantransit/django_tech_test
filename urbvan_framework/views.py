@@ -2,6 +2,7 @@ from rest_framework.generics import GenericAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 
+from apps.users.permissions import ViewerPermission, EditorPermission, OwnerPermission
 from .mixins import (
     CreateModelMixin,
     ListModelMixin,
@@ -59,10 +60,19 @@ class UpdateAPIView(UpdateModelMixin, GenericAPIView):
 
 
 class ReadOnlyModelViewSet(ListAPIView, RetrieveAPIView, GenericViewSet):
-    pass
+
+    def get_permissions(self):
+        if self.action in ('list', 'retrieve'):
+            permission_classes = [ViewerPermission]
+        return [permission() for permission in permission_classes]
 
 
 class WriteOnlyModelViewSet(CreateAPIView, UpdateAPIView, DestroyAPIView, GenericViewSet):
-    pass
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'partial_update'):
+            permission_classes = [EditorPermission]
+        else:
+            permission_classes = [OwnerPermission]
+        return [permission() for permission in permission_classes]
 
 
