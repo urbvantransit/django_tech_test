@@ -14,7 +14,7 @@ class LineModel(models.Model):
     color = models.CharField(max_length=8)
 
     def __str__(self):
-        return self.id
+        return self.name
 
 
 class RouteModel(models.Model):
