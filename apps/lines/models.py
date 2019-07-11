@@ -13,6 +13,9 @@ class LineModel(models.Model):
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=8)
 
+    def __str__(self):
+        return self.id
+
 
 class RouteModel(models.Model):
 
@@ -22,3 +25,6 @@ class RouteModel(models.Model):
     stations = models.ManyToManyField(StationModel)
     direction = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.id
