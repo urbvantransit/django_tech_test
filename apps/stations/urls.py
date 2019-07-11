@@ -10,3 +10,11 @@ urlpatterns_v1_locations = ([
          name='v1_list_create_location'),
 
 ], 'locations')
+
+urlpatterns_v1_stations = ([
+
+    path('',
+         views_v1.StationView.as_view(),
+         name='v1_list_create_station'),
+
+], 'station')
