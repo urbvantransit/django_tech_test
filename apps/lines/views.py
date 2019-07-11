@@ -5,9 +5,11 @@ from rest_framework.views import APIView
 from rest_framework import generics
 
 from .models import LineModel, RouteModel
-from .serializers import LineSerializer
-# Create your views here.
-    
+from .serializers import LineSerializer, RouteSerializer
+############## Vistas para modelo LineModel
+'''
+Listar todas las lineas 
+'''  
 class LineView(generics.ListAPIView):
     permission_classes      = []
     authentication_classes  = []
@@ -22,12 +24,16 @@ class LineView(generics.ListAPIView):
             qs = qs.filter(name__icontains = query) #filtrar el nombre por el parametro en la ruta
         
         return qs
-
+'''
+Crear una nueva linea
+'''
 class LineCreateView(generics.CreateAPIView):
     permission_classes      = []
     authentication_classes  = []
     serializer_class        = LineSerializer
-
+'''
+Ver el detalle de una linea por el id
+'''
 class LineDetailView(generics.RetrieveAPIView):
     permission_classes      = []
     authentication_classes  = []
@@ -39,15 +45,27 @@ class LineDetailView(generics.RetrieveAPIView):
         kwargs = self.kwargs # parametros por teclado
         kw_id = kwargs.get('id') # obtener el parametro id de los parametros por telcado
         return LineModel.objects.get(id = kw_id) # retornar solo el objeto que tenga el id = kw_id
-
+'''
+Actualizar una linea por el id
+'''
 class LineUpdateView(generics.UpdateAPIView):
     permission_classes      = []
     authentication_classes  = []
     serializer_class        = LineSerializer
     queryset                = LineModel.objects.all()
-
+'''
+Eliminar una lunea por el id
+'''
 class LineDeleteView(generics.DestroyAPIView):
     permission_classes      = []
     authentication_classes  = []
     serializer_class        = LineSerializer
     queryset                = LineModel.objects.all()
+
+#################### VIstas para modelo RouteModel
+class RouteView(generics.ListAPIView):
+    permission_classes      = []
+    authentication_classes  = []
+
+    queryset                = RouteModel.objects.all()
+    serializer_class        = RouteSerializer
