@@ -17,8 +17,8 @@ Listar todas las lineas
 
 
 class LineView(ListCreateView):
-    permission_classes = []
-    authentication_classes = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     schema_class = LineSchema
     queryset                = LineModel.objects.all()
     serializer_class        = LineSerializer
@@ -34,15 +34,15 @@ class LineView(ListCreateView):
 Crear una nueva linea
 '''
 class LineCreateView(generics.CreateAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = LineSerializer
 '''
 Ver el detalle de una linea por el id
 '''
 class LineDetailView(generics.RetrieveAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = LineSerializer
     queryset                = LineModel.objects.all()
     lookup_field            = id
@@ -55,16 +55,16 @@ class LineDetailView(generics.RetrieveAPIView):
 Actualizar una linea por el id
 '''
 class LineUpdateView(generics.UpdateAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = LineSerializer
     queryset                = LineModel.objects.all()
 '''
 Eliminar una lunea por el id
 '''
 class LineDeleteView(generics.DestroyAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = LineSerializer
     queryset                = LineModel.objects.all()
 
@@ -72,8 +72,8 @@ class LineDeleteView(generics.DestroyAPIView):
 
 
 class RouteView(ListCreateView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     schema_class = RouteSchema
     queryset                = RouteModel.objects.all()
     serializer_class        = RouteSerializer
@@ -86,8 +86,8 @@ Crear una nueva Ruta
 
 
 class RouteCreateView(ListCreateView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = RouteSerializer
 
 
@@ -97,8 +97,8 @@ Ver el detalle de una ruta
 
 
 class RouteDetailView(generics.RetrieveAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class        = RouteSerializer
     queryset                = RouteModel.objects.all()
     lookup_field            = id
@@ -115,8 +115,8 @@ Actualizar una linea por el id
 
 
 class RouteUpdateView(generics.UpdateAPIView):
-    permission_classes = []
-    authentication_classes = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = RouteSerializer
     queryset = RouteModel.objects.all()
 
@@ -127,7 +127,7 @@ Eliminar una lunea por el id
 
 
 class RouteDeleteView(generics.DestroyAPIView):
-    permission_classes = []
-    authentication_classes = []
+    authentication_classes = (CustomTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = RouteSerializer
     queryset = RouteModel.objects.all()
