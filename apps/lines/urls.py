@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from .views import LineView, LineCreateView, LineDetailView, LineUpdateView, LineDeleteView, RouteView
+from .views import * 
 
 app_name = "lines"
 
@@ -16,4 +16,8 @@ lines_urlpatterns = ([
 
 routes_urlpatterns = ([
     path('', RouteView.as_view(), name='rutas'),
+    path('create', RouteCreateView.as_view(), name='create-route'),
+    path('<str:id>', RouteDetailView.as_view(), name='detail-route'),
+    path('<str:pk>/update', RouteUpdateView.as_view(), name='update-route'),
+    path('<str:pk>/delete', RouteDeleteView.as_view(), name='delete-route'),
 ], 'routes')

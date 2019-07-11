@@ -3,16 +3,20 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics
-
+from rest_framework.permissions import IsAuthenticated
+# importar modelos
 from .models import LineModel, RouteModel
+#importar serializers
 from .serializers import LineSerializer, RouteSerializer
+
+from urbvan_framework.authentication import CustomTokenAuthentication 
 ############## Vistas para modelo LineModel
 '''
 Listar todas las lineas 
 '''  
 class LineView(generics.ListAPIView):
-    permission_classes      = []
-    authentication_classes  = []
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (CustomTokenAuthentication,)
 
     queryset                = LineModel.objects.all()
     serializer_class        = LineSerializer
@@ -69,3 +73,57 @@ class RouteView(generics.ListAPIView):
 
     queryset                = RouteModel.objects.all()
     serializer_class        = RouteSerializer
+
+
+
+'''
+Crear una nueva Ruta
+'''
+
+
+class RouteCreateView(generics.CreateAPIView):
+    permission_classes      = []
+    authentication_classes  = []
+    serializer_class        = RouteSerializer
+
+
+'''
+Ver el detalle de una ruta
+'''
+
+
+class RouteDetailView(generics.RetrieveAPIView):
+    permission_classes      = []
+    authentication_classes  = []
+    serializer_class        = RouteSerializer
+    queryset                = RouteModel.objects.all()
+    lookup_field            = id
+
+    def get_object(self, *args, **kwargs):
+        kwargs = self.kwargs # parametros por teclado
+        kw_id = kwargs.get('id') # obtener el parametro id de los parametros por telcado
+        return RouteModel.objects.get(id = kw_id) # retornar solo el objeto que tenga el id = kw_id
+
+
+'''
+Actualizar una linea por el id
+'''
+
+
+class RouteUpdateView(generics.UpdateAPIView):
+    permission_classes = []
+    authentication_classes = []
+    serializer_class = RouteSerializer
+    queryset = RouteModel.objects.all()
+
+
+'''
+Eliminar una lunea por el id
+'''
+
+
+class RouteDeleteView(generics.DestroyAPIView):
+    permission_classes = []
+    authentication_classes = []
+    serializer_class = RouteSerializer
+    queryset = RouteModel.objects.all()
