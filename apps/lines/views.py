@@ -1,23 +1,25 @@
-from django.shortcuts import render, get_object_or_404
 
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 # importar modelos
 from .models import LineModel, RouteModel
 #importar serializers
 from .serializers import LineSerializer, RouteSerializer
+from .schemas import LineSchema, RouteSchema
+#urbvan framework
+from urbvan_framework.views import ListCreateView
 
 from urbvan_framework.authentication import CustomTokenAuthentication 
 ############## Vistas para modelo LineModel
 '''
 Listar todas las lineas 
 '''  
-class LineView(generics.ListAPIView):
-    permission_classes = (IsAuthenticated, )
-    authentication_classes = (CustomTokenAuthentication,)
 
+
+class LineView(ListCreateView):
+    permission_classes = []
+    authentication_classes = []
+    schema_class = LineSchema
     queryset                = LineModel.objects.all()
     serializer_class        = LineSerializer
 
@@ -67,10 +69,12 @@ class LineDeleteView(generics.DestroyAPIView):
     queryset                = LineModel.objects.all()
 
 #################### VIstas para modelo RouteModel
-class RouteView(generics.ListAPIView):
+
+
+class RouteView(ListCreateView):
     permission_classes      = []
     authentication_classes  = []
-
+    schema_class = RouteSchema
     queryset                = RouteModel.objects.all()
     serializer_class        = RouteSerializer
 
@@ -81,7 +85,7 @@ Crear una nueva Ruta
 '''
 
 
-class RouteCreateView(generics.CreateAPIView):
+class RouteCreateView(ListCreateView):
     permission_classes      = []
     authentication_classes  = []
     serializer_class        = RouteSerializer
