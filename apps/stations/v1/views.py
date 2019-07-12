@@ -3,6 +3,8 @@ from urbvan_framework.views import ListCreateView
 from rest_framework import generics, mixins
 from .schemas import LocationSchema, StationSchema
 from .serializers import LocationSerializer, StationSerializer
+from urbvan_framework.authentication import CustomTokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from ..models import LocationModel, StationModel
 
