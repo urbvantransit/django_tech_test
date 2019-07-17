@@ -1,2 +1,2 @@
-from .locations import *
-from .stations import *
+from .locations import LocationModel
+from .stations import StationModel
