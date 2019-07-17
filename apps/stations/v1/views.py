@@ -1,4 +1,3 @@
-# coding: utf8
 from urbvan_framework.views import ListCreateView
 
 from .schemas import LocationSchema

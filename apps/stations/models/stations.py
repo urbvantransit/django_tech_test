@@ -1,4 +1,3 @@
-# coding: utf8
 from django.db import models
 
 from .locations import LocationModel

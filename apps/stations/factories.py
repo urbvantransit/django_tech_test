@@ -1,4 +1,3 @@
-# coding: utf8
 import factory
 
 from .models import LocationModel
