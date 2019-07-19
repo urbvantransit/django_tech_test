@@ -1,11 +1,8 @@
-from django.urls import path
+from django.urls import (include, path)
 
-from .v1 import views as views_v1
+from .routers import (read_router, write_router)
 
-urlpatterns_v1_locations = ([
-
-    path('',
-         views_v1.LocationView.as_view(),
-         name='v1_list_create_location'),
-
-], 'locations')
+urlpatterns = [
+    path('/', include(read_router.urls)),
+    path('/write/', include(write_router.urls)),
+]

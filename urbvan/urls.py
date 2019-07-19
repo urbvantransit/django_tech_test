@@ -3,7 +3,7 @@ from django.urls import (include, path)
 
 from rest_framework.authtoken import views
 
-from apps.stations.urls import urlpatterns_v1_locations
+from apps.stations.urls import urlpatterns as urlpatterns_v1_locations
 from apps.lines.urls import urlpatterns as urlpatterns_v1_lines
 
 urlpatterns = [

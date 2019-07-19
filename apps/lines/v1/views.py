@@ -3,10 +3,10 @@ from apps.lines.models import (LineModel, RouteModel)
 from apps.lines.v1.schemas import (LineSchema, RouteSchema)
 from apps.lines.v1.serializers import (LineSerializer, RouteSerializer)
 
-from urbvan_framework.views import (ReadOnlyModelViewSet, WriteOnlyModelViewSet)
+from urbvan_framework.views import (ReadViewSet, WriteViewSet)
 
 
-class LineReadViewSet(ReadOnlyModelViewSet):
+class LineReadViewSet(ReadViewSet):
     """
     Concrete ViewSet for LineModel reading methods
     """
@@ -16,7 +16,7 @@ class LineReadViewSet(ReadOnlyModelViewSet):
     serializer_class = LineSerializer
 
 
-class LineWriteViewSet(WriteOnlyModelViewSet):
+class LineWriteViewSet(WriteViewSet):
     """
     Concrete ViewSet for LineModel write methods
     """
@@ -25,7 +25,7 @@ class LineWriteViewSet(WriteOnlyModelViewSet):
     serializer_class = LineSerializer
 
 
-class RouteReadViewSet(ReadOnlyModelViewSet):
+class RouteReadViewSet(ReadViewSet):
     """
     Concrete ViewSet for RouteModel reading methods
     """
@@ -34,7 +34,7 @@ class RouteReadViewSet(ReadOnlyModelViewSet):
     serializer_class = RouteSerializer
 
 
-class RouteWriteViewSet(WriteOnlyModelViewSet):
+class RouteWriteViewSet(WriteViewSet):
     """
     Concrete ViewSet for RouteModel write methods
     """
