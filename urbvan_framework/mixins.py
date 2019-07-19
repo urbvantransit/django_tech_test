@@ -35,7 +35,7 @@ class CreateModelMixin(mixins.CreateModelMixin):
         return Response(response, status=status.HTTP_201_CREATED)
 
 
-class ListModelMixin(object):
+class ListModelMixin(mixins.ListModelMixin):
 
     def list(self, request, *args, **kwargs):
 
@@ -43,8 +43,51 @@ class ListModelMixin(object):
         queryset = self.filter_queryset(queryset)
 
         page = self.paginate_queryset(queryset)
-        schema = self.schema_class(many=True)
+        schema = self.schema_class(many=True).dump(page)
 
-        schema = schema.dump(page).data
+        return self.get_paginated_response(schema.data)
 
-        return self.get_paginated_response(schema)
+
+class RetrieveModelMixin(mixins.RetrieveModelMixin):
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        response = render_to_response(body=serializer.data)
+
+        return Response(response)
+
+
+class UpdateModelMixin(mixins.UpdateModelMixin):
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        is_partial = kwargs.pop('partial', False)
+
+        serializer = self.get_serializer(
+            instance,
+            data=request.data,
+            partial=is_partial
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        schema = self.schema_class().dump(instance)
+
+        response = render_to_response(body=schema.data)
+
+        return Response(response)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
+
