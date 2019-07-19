@@ -60,3 +60,21 @@ class UpdateAPIView(UpdateModelMixin, GenericAPIView):
 
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
+
+
+class ReadViewSet(ListAPIView, RetrieveAPIView, GenericViewSet):
+    """
+    Read only view set
+    Created only for List & Retrieve available methods
+    (GET method)
+    """
+    pass
+
+
+class WriteViewSet(CreateAPIView, UpdateAPIView, GenericViewSet):
+    """
+    Write only view set
+    Created only for Create & Update available methods
+    (POST, PUT, PATCH, Method)
+    """
+    pass
