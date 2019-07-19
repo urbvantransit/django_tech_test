@@ -4,7 +4,6 @@ from apps.stations.v1.schemas import StationSchema
 
 
 class LineSchema(Schema):
-
     id = fields.String()
     name = fields.String()
     color = fields.String()

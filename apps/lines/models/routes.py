@@ -1,6 +1,7 @@
 from django.db import models
 
 from apps.stations.models import StationModel
+from .lines import LineModel
 
 from apps.utils import create_id
 
