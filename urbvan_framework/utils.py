@@ -1,11 +1,25 @@
 from .schemas import (BaseResponseSchema, BaseBodySchema)
 
 
+def error_builder_for_render(exception):
+    '''
+    Build exception error for render_response_error
+    :param exception: Exception Object
+    :return: Base error message
+    '''
+    if hasattr(exception, 'detail'):
+        error = exception.detail
+    else:
+        error = {"base": {"message": str(exception)}}
+
+    return error
+
+
 def render_response_error(errors={}):
     list_errors = []
     for key, value in errors.items():
 
-        if type(value) is list:
+        if isinstance(value, list):
             value = {"message": value[0]}
 
         value.update({"field": key})

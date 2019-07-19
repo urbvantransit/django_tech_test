@@ -1,7 +1,7 @@
 from rest_framework import (mixins, status)
 from rest_framework.response import Response
 
-from .utils import (render_to_response, render_response_error)
+from .utils import ( error_builder_for_render, render_to_response, render_response_error)
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
@@ -17,11 +17,7 @@ class CreateModelMixin(mixins.CreateModelMixin):
         try:
             self.perform_create(serializer)
         except Exception as e:
-            if hasattr(e, 'detail'):
-                error = e.detail
-            else:
-                error = {"base": {"message": str(e)}}
-
+            error = error_builder_for_render(e)
             response = render_response_error(errors=error)
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
@@ -71,9 +67,16 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
             partial=is_partial
         )
 
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            response = render_response_error(errors=serializer.errors)
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
-        self.perform_update(serializer)
+        try:
+            self.perform_update(serializer)
+        except Exception as e:
+            error = error_builder_for_render(e)
+            response = render_response_error(errors=error)
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
         if getattr(instance, '_prefetched_objects_cache', None):
             instance._prefetched_objects_cache = {}
