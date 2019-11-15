@@ -1,9 +1,15 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView,
+    RetrieveAPIView,
+    DestroyAPIView,
+)
 from apps.lines.models import LineModel, RouteModel
 from .serializers import LineModelSerializer, RouteModelSerializer
 from .schemas import LinesSchema, RouteSchema
 from rest_framework.permissions import IsAuthenticated
 from urbvan_framework.authentication import CustomTokenAuthentication
+from urbvan_framework.views import IsStaffUser, IsAnonymousUser, IsSuperUser
 
 """
 Lines CRUD views
@@ -17,7 +23,7 @@ Lines CRUD views
 class LineModelListView(ListAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAnonymousUser
+    permission_classes = (IsAnonymousUser,)
 
     queryset = LineModel.objects.all()
     schema_class = LinesSchema
@@ -27,7 +33,10 @@ class LineModelListView(ListAPIView):
 class LineModelDetailView(RetrieveAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (
+        IsAuthenticated,
+        IsStaffUser,
+    )
 
     queryset = LineModel.objects.all()
     schema_class = LinesSchema
@@ -37,7 +46,10 @@ class LineModelDetailView(RetrieveAPIView):
 class LineModelCreateView(CreateAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (
+        IsAuthenticated,
+        IsSuperUser,
+    )
 
     serializer_class = LineModelSerializer
     schema_class = LinesSchema
@@ -46,7 +58,7 @@ class LineModelCreateView(CreateAPIView):
 class LineModelDeleteView(DestroyAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (IsAuthenticated, IsSuperUser)
 
     queryset = LineModel.objects.all()
     schema_class = LinesSchema
