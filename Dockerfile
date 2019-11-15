@@ -5,6 +5,21 @@ ENV PYTHONUNBUFFERED 1
 # Create folder for code
 RUN mkdir /code
 
+# Install  GDAL library
+RUN apt-get update &&\
+    apt-get install -y binutils libproj-dev gdal-bin
+
+# After install PROJ.4 and GEOS install GDAL, fix versions gdal with container
+#######
+#RUN wget http://download.osgeo.org/gdal/1.11.2/gdal-1.11.2.tar.gz
+#RUN tar xzf gdal-1.11.2.tar.gz
+#RUN cd gdal-1.11.2
+#RUN ./configure
+#RUN make
+#RUN make install
+#RUN cd ..
+###########
+
 # Set the work directory
 WORKDIR /code
 

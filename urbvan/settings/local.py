@@ -15,3 +15,5 @@ DATABASES = {
 
 DATABASE_ROUTERS = ['urbvan.routers.UrbvanRouter']
 
+# The path depends of the library location in container
+# GDAL_LIBRARY_PATH = '/home/sue/local/lib/libgdal.so'
