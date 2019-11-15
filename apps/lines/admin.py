@@ -2,9 +2,11 @@ from django.contrib import admin
 
 from .models import LineModel, RouteModel
 
+
 # Register your models here.
 @admin.register(LineModel)
 class LineModelAdmin(admin.ModelAdmin):
+    
 
     list_display = ('id', 'name', 'color', )
     ordering = ('id', 'name', 'color', )

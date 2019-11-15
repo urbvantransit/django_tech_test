@@ -1,10 +1,9 @@
 # coding: utf8
 from django.urls import reverse
-
 from rest_framework.test import APITestCase
 
-from apps.users.factories import (UserFactory, TokenFactory)
 from apps.stations.factories import LocationFactory
+from apps.users.factories import TokenFactory, UserFactory
 
 
 class LocationCreateTest(APITestCase):

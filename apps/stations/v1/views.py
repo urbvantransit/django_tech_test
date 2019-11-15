@@ -1,10 +1,9 @@
 # coding: utf8
 from urbvan_framework.views import ListCreateView
 
+from ..models import LocationModel
 from .schemas import LocationSchema
 from .serializers import LocationSerializer
-
-from ..models import LocationModel
 
 
 class LocationView(ListCreateView):

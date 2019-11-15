@@ -2,9 +2,9 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from .mixins import (CreateModelMixin, ListModelMixin)
-from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
+from .mixins import CreateModelMixin, ListModelMixin
+from .schemas import PaginationResponse
 
 
 class CreateAPIView(CreateModelMixin, GenericAPIView):

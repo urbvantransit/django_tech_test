@@ -1,8 +1,7 @@
 # coding: utf8
+from marshmallow import Schema, fields, pre_dump
 from rest_framework import pagination
 from rest_framework.response import Response
-
-from marshmallow import (Schema, fields, pre_dump)
 
 
 class BaseErrorSchema(Schema):

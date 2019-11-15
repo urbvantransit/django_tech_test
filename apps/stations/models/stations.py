@@ -1,9 +1,9 @@
 # coding: utf8
 from django.db import models
 
-from .locations import LocationModel
-
 from apps.utils import create_id
+
+from .locations import LocationModel
 
 
 class StationModel(models.Model):
