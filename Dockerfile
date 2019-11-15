@@ -11,6 +11,9 @@ WORKDIR /code
 # Add the requirements file
 ADD urbvan/requirements/base.txt /code/
 
+# Copy nginx file
+COPY urbvan.site.conf /etc/nginx/sites-available/
+
 # Install dependencies
 RUN pip3 install -r base.txt
 
