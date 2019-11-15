@@ -74,10 +74,11 @@ class LineModelDeleteView(DestroyAPIView):
 """
 #TODO: Give permissions per view
 
+
 class RouteModelListView(ListAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAnonymousUser
+    permission_classes = (IsAnonymousUser,)
 
     queryset = RouteModel.objects.all()
     schema_class = RouteSchema
@@ -87,7 +88,10 @@ class RouteModelListView(ListAPIView):
 class RouteModelDetailView(RetrieveAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (
+        IsAuthenticated,
+        IsStaffUser,
+    )
 
     queryset = RouteModel.objects.all()
     schema_class = RouteSchema
@@ -97,7 +101,7 @@ class RouteModelDetailView(RetrieveAPIView):
 class RouteModelCreateView(CreateAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (IsAuthenticated, IsSuperUser)
 
     serializer_class = RouteModelSerializer
     schema_class = RouteSchema
@@ -106,7 +110,7 @@ class RouteModelCreateView(CreateAPIView):
 class RouteModelDeleteView(DestroyAPIView):
 
     authentication_classes = (CustomTokenAuthentication,)
-    # permission_classes = IsAuthenticated
+    permission_classes = (IsAuthenticated, IsSuperUser)
 
     queryset = RouteModel.objects.all()
     schema_class = RouteSchema
