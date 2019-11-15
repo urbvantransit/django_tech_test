@@ -4,12 +4,18 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
+isort = "*"
 
 [packages]
 djangorestframework = "==3.8.2"
 marshmallow = "==2.15.6"
 factory-boy = "==2.11.1"
 Django = "==2.1.2"
+python-decouple = "*"
 
 [requires]
 python_version = "3.6"
+
+[scripts]
+server = "python manage.py runserver"
