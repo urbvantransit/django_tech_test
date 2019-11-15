@@ -43,9 +43,14 @@ Add Signal for post_delete of Station Model and save the event in Historial
 """
 
 
+def pre_create_id(sender, instance, **kwargs):
+    instance.id = create_id("sta_")
+
+
 def remove_location(sender, instance, **kwargs):
     name_class = sender._meta.object_name
     Historical.objects.create(event="Delete", model_type=name_class)
 
 
 post_delete.connect(remove_location, sender=StationModel)
+pre_save.connect(pre_create_id, sender=StationModel)

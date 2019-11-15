@@ -1,6 +1,7 @@
 # coding: utf8
 from django.db import models
 from apps.utils import create_id
+from django.db.models.signals import pre_save
 
 
 class LocationModel(models.Model):
@@ -26,3 +27,10 @@ class LocationModel(models.Model):
 
     class Meta:
         ordering = ["-id"]
+
+
+def pre_create_id(sender, instance, **kwargs):
+    instance.id = create_id("loc_")
+
+
+pre_save.connect(pre_create_id, sender=LocationModel)
