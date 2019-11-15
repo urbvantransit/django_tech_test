@@ -14,6 +14,14 @@ EVENT_TYPE = [
 
 
 class Historical(models.Model):
+    """ Historical object is the representation of historical events with objects
+
+                       Fields:
+                           event -- Type of event(CRUD).
+                           model_type -- Model where event happen.
+                           created_at -- Date of creation
+                           updated_at -- Date of last modification
+                   """
     event = models.CharField(max_length=100, choices=EVENT_TYPE, default="Delete")
     model_type = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -24,7 +32,16 @@ class Historical(models.Model):
 
 
 class StationModel(models.Model):
+    """ Station object is the representation of physical station
 
+                   Fields:
+                       id -- This is the unique identifier for object instance.
+                       location -- Location of the station(coordinates).
+                       order -- Order of the station.
+                       is_active -- If the route is active.
+                       created_at -- Date of creation
+                       updated_at -- Date of last modification
+               """
     id = models.CharField(
         default=create_id("sta_"), primary_key=True, max_length=30, unique=True
     )

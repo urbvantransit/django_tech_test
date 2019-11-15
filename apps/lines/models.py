@@ -6,7 +6,15 @@ from django.db.models.signals import pre_save
 
 
 class LineModel(models.Model):
+    """ Line object is the representation of physical Line
 
+            Fields:
+                id -- This is the unique identifier for object instance.
+                name -- Name of the Line.
+                color -- Color of the Line.
+                created_at -- Date of creation
+                updated_at -- Date of last modification
+        """
     id = models.CharField(
         default=create_id("line_"), primary_key=True, max_length=30, unique=True
     )
@@ -20,7 +28,17 @@ class LineModel(models.Model):
 
 
 class RouteModel(models.Model):
+    """ Route object is the representation of physical Route
 
+                Fields:
+                    id -- This is the unique identifier for object instance.
+                    line --Line of the Route.
+                    stations -- Stations of the route.
+                    direction -- Direction of the route.
+                    is_active -- If the route is active.
+                    created_at -- Date of creation
+                    updated_at -- Date of last modification
+            """
     id = models.CharField(
         default=create_id("route_"), primary_key=True, max_length=30, unique=True
     )
