@@ -3,6 +3,8 @@ from django.db import models
 from apps.utils import create_id
 from django.db.models.signals import pre_save
 
+# from django.contrib.gis.db import models
+
 
 class LocationModel(models.Model):
     """ Location object is the representation of physical station
@@ -19,8 +21,10 @@ class LocationModel(models.Model):
         default=create_id("loc_"), primary_key=True, max_length=30, unique=True
     )
     name = models.CharField(max_length=100)
-    latitude = models.DecimalField(max_digits=19, decimal_places=16)
-    longitude = models.DecimalField(max_digits=19, decimal_places=16)
+    # latitude = models.DecimalField(max_digits=19, decimal_places=16)
+    # longitude = models.DecimalField(max_digits=19, decimal_places=16)
+    coordinates = models.CharField(max_length=100, default="")
+    # geometry = models.PointField()  #TODO:Install GDAL Library
 
     def __str__(self):
         return self.name

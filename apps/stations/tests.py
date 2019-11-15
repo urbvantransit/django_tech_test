@@ -132,7 +132,8 @@ class LocationCreateTest(APITestCase):
         self.assertEquals(response["body"].get("count"), 1)
 
     def test_create_successfully(self):
-        data = {"name": "Urbvan", "latitude": 19.388401, "longitude": -99.227358}
+        # data = {"name": "Urbvan", "latitude": 19.388401, "longitude": -99.227358}
+        data = {"name": "Urbvan", "coordinates": "19.388401, -99.227358"}
 
         response = self.client.post(self.url, data, format="json")
         self.assertEquals(response.status_code, 201)

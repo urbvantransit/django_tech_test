@@ -11,12 +11,12 @@ class LocationFactory(factory.django.DjangoModelFactory):
         model = LocationModel
 
     name = factory.Faker("slug")
-    latitude = factory.Faker("latitude")
-    longitude = factory.Faker("longitude")
+    # latitude = factory.Faker("longitude")
+    # longitude = factory.Faker("longitude")
+    coordinates = str(factory.Faker("longitude")) + ", " + str(factory.Faker("longitude"))
 
 
 class StationFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = StationModel
 

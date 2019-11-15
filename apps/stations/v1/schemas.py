@@ -6,8 +6,9 @@ class LocationSchema(Schema):
 
     id = fields.String()
     name = fields.String()
-    latitude = fields.Decimal()
-    longitude = fields.Decimal()
+    # latitude = fields.Decimal()
+    # longitude = fields.Decimal()
+    coordinates = fields.String()
 
 
 class StationSchema(Schema):
