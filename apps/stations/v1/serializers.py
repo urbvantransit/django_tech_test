@@ -9,3 +9,4 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = LocationModel
         exclude = ('id', )
+        read_only_fields = ('user', )
