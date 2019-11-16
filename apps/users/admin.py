@@ -33,8 +33,22 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
     form = UserChangeForm
-    list_display = ('email', 'first_name', 'last_name', 'is_superuser', 'date_joined')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups', 'date_joined')
+    list_display = (
+        'email', 
+        'first_name', 
+        'last_name', 
+        'is_superuser', 
+        'date_joined', 
+        'is_driver'
+    )
+    list_filter = (
+        'is_staff', 
+        'is_superuser', 
+        'is_active', 
+        'groups', 
+        'date_joined', 
+        'is_driver',
+    )
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('email',)
     readonly_fields = ('last_login', 'date_joined',)

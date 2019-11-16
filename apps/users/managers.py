@@ -2,6 +2,11 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
+    """
+    Manejador del modelo Usuario, que nos permite tener un mayor
+    control sobre los datos datos y seprar la lógica de
+    la base de datos
+    """
     use_in_migrations = True
 
     def create_user(self, email, password=None):

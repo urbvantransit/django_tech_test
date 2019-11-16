@@ -63,12 +63,22 @@ class DriveProfile(TimeStampedModel):
     Una clase modelo que tiene los datos de un chofer de Urbvan
     los cuales no conozco, pero los inventaré, aunque sean pocos
     """
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='driver_p', on_delete=models.CASCADE)
-    unidad = models.CharField(_('Number of the transport unit'), max_length=50, blank=True, null=True)
-    placas = models.CharField(_('Placas'), max_length=50, blank=True, null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, 
+                                related_name='driver_p', 
+                                on_delete=models.CASCADE)
+    unidad = models.CharField(_('Number of the transport unit'), 
+                                max_length=50, 
+                                blank=True, 
+                                null=True)
+    placas = models.CharField(_('Placas'), 
+                                max_length=50, 
+                                blank=True, 
+                                null=True)
 
     def __str__(self):
-        return self.get_full_name()
+        if not self.user.first_name and not self.user.last_name:
+            return self.user.email
+        return self.user.get_full_name()
 
 
 class UserProfile(TimeStampedModel):
@@ -78,10 +88,17 @@ class UserProfile(TimeStampedModel):
     algunos pocos a modo de prueba para después, utilizar en los
     permisos
     """
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_p', on_delete=models.CASCADE)
-    address = models.CharField(_("Address"), max_length=120, blank=True, null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, 
+                            related_name='user_p', 
+                            on_delete=models.CASCADE)
+    address = models.CharField(_("Address"), 
+                            max_length=120, 
+                            blank=True, 
+                            null=True)
     location = models.CharField(_("Location"), max_length=50, blank=True)
     # y más datos
 
     def __str__(self):
-        return self.get_full_name()
+        if not self.user.first_name and not self.user.last_name:
+            return self.user.email
+        return self.user.get_full_name()
