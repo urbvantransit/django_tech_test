@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 
 from apps.core.models import TimeStampedModel
-from apps.utils import IDGenerator #create_id
+from apps.utils import IDGenerator  # create_id
 
 
 class LocationModel(TimeStampedModel):

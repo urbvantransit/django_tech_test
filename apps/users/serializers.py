@@ -3,6 +3,7 @@ from rest_framework.validators import UniqueValidator
 
 from .models import User
 
+
 class UserCreateSerializer(serializers.ModelSerializer):
     """
     Clase que proporciona los datos necesarios para poder crear

@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from apps.core.models import TimeStampedModel
 from apps.stations.models import StationModel
-from apps.utils import IDGenerator #create_id
+from apps.utils import IDGenerator  # create_id
 
 # ********* IMPORTANTE ********* #
 # Se agrega TimeStampedModel a `LineModel` & `RouteModel`

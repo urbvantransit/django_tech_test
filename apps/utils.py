@@ -1,5 +1,7 @@
 # coding: utf8
-import string, random, uuid
+import random
+import string
+import uuid
 from datetime import datetime
 from uuid import uuid4
 

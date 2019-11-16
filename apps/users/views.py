@@ -1,9 +1,11 @@
-from rest_framework import status, permissions
-from rest_framework.views import APIView
+from rest_framework import permissions, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from urbvan_framework.utils import render_to_response
 
 from .serializers import UserCreateSerializer
-from urbvan_framework.utils import render_to_response
+
 
 class RegisterUserAPIView(APIView):
     """
