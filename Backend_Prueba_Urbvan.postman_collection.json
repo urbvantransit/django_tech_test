@@ -1,0 +1,1089 @@
+{
+	"info": {
+		"_postman_id": "2c792e60-d8e1-4c94-b6a4-49ee80e983de",
+		"name": "Backend Prueba Técnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "V1",
+			"item": [
+				{
+					"name": "Locations",
+					"item": [
+						{
+							"name": "List locations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/locations/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "[ 200 ] List locations",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{access_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/v1/locations/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"locations",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Allow",
+											"value": "GET, POST, HEAD, OPTIONS",
+											"name": "Allow",
+											"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+										},
+										{
+											"key": "Content-Length",
+											"value": "194",
+											"name": "Content-Length",
+											"description": "The length of the response body in octets (8-bit bytes)"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 14 Apr 2018 06:29:27 GMT",
+											"name": "Date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.5",
+											"name": "Server",
+											"description": "A name for the server"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept",
+											"name": "Vary",
+											"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN",
+											"name": "X-Frame-Options",
+											"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+										}
+									],
+									"cookie": [],
+									"body": "{\"errors\":[],\"body\":{\"links\":{\"previous\":null,\"next\":null},\"results\":[{\"latitude\":19.426763,\"longitude\":-99.167272,\"name\":\"Angel de la independencia\",\"id\":\"loc_2018414628745d32551\"}],\"count\":1}}"
+								}
+							]
+						},
+						{
+							"name": "Create location",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"WeWork Montes Urales\",\n\t\"latitude\": \"19.426763\",\n\t\"longitude\": \"-99.167272\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/locations/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "[ 201 ] Create location",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Angel de la independencia\",\n\t\"latitude\": 19.426763,\n\t\"longitude\": -99.167272\n}"
+										},
+										"url": {
+											"raw": "{{url}}/v1/locations/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"locations",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Allow",
+											"value": "GET, POST, HEAD, OPTIONS",
+											"name": "Allow",
+											"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+										},
+										{
+											"key": "Content-Length",
+											"value": "195",
+											"name": "Content-Length",
+											"description": "The length of the response body in octets (8-bit bytes)"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 14 Apr 2018 06:29:47 GMT",
+											"name": "Date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.5",
+											"name": "Server",
+											"description": "A name for the server"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept",
+											"name": "Vary",
+											"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN",
+											"name": "X-Frame-Options",
+											"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+										}
+									],
+									"cookie": [],
+									"body": "{\"errors\":[],\"body\":{\"links\":{\"previous\":null,\"next\":null},\"results\":[{\"latitude\":19.426763,\"longitude\":-99.167272,\"name\":\"Angel de la independencia\",\"id\":\"loc_201841462924b1c3a264\"}],\"count\":1}}"
+								}
+							]
+						},
+						{
+							"name": "Get a location",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/locations/575461200416",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										"575461200416"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy a location",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/locations/575461200416",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										"575461200416"
+									]
+								},
+								"description": "Elimina una `Location`, del sistema."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a location",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"latitude\": 19.426763,\n    \"longitude\": -99.167272,\n    \"name\": \"Urbvan - Londres #40\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/locations/575461200416",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										"575461200416"
+									]
+								},
+								"description": "Permite actualizar parcial o totalmente un objeto/registro, haciendo uso de PATCH o UPDATE"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Stations",
+					"item": [
+						{
+							"name": "List Stations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/stations/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stations",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "[ 200 ] List locations",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{access_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/v1/locations/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"locations",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Allow",
+											"value": "GET, POST, HEAD, OPTIONS",
+											"name": "Allow",
+											"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+										},
+										{
+											"key": "Content-Length",
+											"value": "194",
+											"name": "Content-Length",
+											"description": "The length of the response body in octets (8-bit bytes)"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 14 Apr 2018 06:29:27 GMT",
+											"name": "Date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.5",
+											"name": "Server",
+											"description": "A name for the server"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept",
+											"name": "Vary",
+											"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN",
+											"name": "X-Frame-Options",
+											"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+										}
+									],
+									"cookie": [],
+									"body": "{\"errors\":[],\"body\":{\"links\":{\"previous\":null,\"next\":null},\"results\":[{\"latitude\":19.426763,\"longitude\":-99.167272,\"name\":\"Angel de la independencia\",\"id\":\"loc_2018414628745d32551\"}],\"count\":1}}"
+								}
+							]
+						},
+						{
+							"name": "Create a Station",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"location\": \"575461200416\",\n\t\"order\": \"1\",\n\t\"is_active\": \"True\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stations/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stations",
+										""
+									]
+								},
+								"description": "Crea una `station` apartir de una `location` (ID) dada, `order` e `is_active`."
+							},
+							"response": [
+								{
+									"name": "[ 201 ] Create location",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Angel de la independencia\",\n\t\"latitude\": 19.426763,\n\t\"longitude\": -99.167272\n}"
+										},
+										"url": {
+											"raw": "{{url}}/v1/locations/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"locations",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Allow",
+											"value": "GET, POST, HEAD, OPTIONS",
+											"name": "Allow",
+											"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+										},
+										{
+											"key": "Content-Length",
+											"value": "195",
+											"name": "Content-Length",
+											"description": "The length of the response body in octets (8-bit bytes)"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 14 Apr 2018 06:29:47 GMT",
+											"name": "Date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.5",
+											"name": "Server",
+											"description": "A name for the server"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept",
+											"name": "Vary",
+											"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN",
+											"name": "X-Frame-Options",
+											"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+										}
+									],
+									"cookie": [],
+									"body": "{\"errors\":[],\"body\":{\"links\":{\"previous\":null,\"next\":null},\"results\":[{\"latitude\":19.426763,\"longitude\":-99.167272,\"name\":\"Angel de la independencia\",\"id\":\"loc_201841462924b1c3a264\"}],\"count\":1}}"
+								}
+							]
+						},
+						{
+							"name": "Get a Station",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/stations/259174912382",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stations",
+										"259174912382"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy a Station",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/stations/259174912382",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stations",
+										"259174912382"
+									]
+								},
+								"description": "Elimina una `Location`, del sistema."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Station",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"location\": \"575461200416\",\n\t\"order\": \"1\",\n\t\"is_active\": \"False\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/stations/259174912382",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stations",
+										"259174912382"
+									]
+								},
+								"description": "Permite actualizar parcial o totalmente un objeto/registro, haciendo uso de PATCH o UPDATE"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lines",
+					"item": [
+						{
+							"name": "List lines",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/lines/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"lines",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create lines",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Linea 2\",\r\n\t\"color\": \"Rosa \"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/lines/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"lines",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a line",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/lines/567009879297",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"lines",
+										"567009879297"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a line",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Linea 2\",\n\t\"color\": \"Azul\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/lines/567009879297",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"lines",
+										"567009879297"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy Line",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/lines/567009879297",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"lines",
+										"567009879297"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes",
+					"item": [
+						{
+							"name": "List Routes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/routes/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"routes",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Routes",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"line\": \"567009879297\",\r\n\t\"stations\":[\"259174912382\"],\r\n\t\"direction\": \"True\",\r\n\t\"is_active\": \"True\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/routes/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"routes",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Route",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/routes/521940355653",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"routes",
+										"521940355653"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Route",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"line\": \"567009879297\",\r\n\t\"stations\":[ \"259174912382\"],\r\n\t\"direction\": \"True\",\r\n\t\"is_active\": \"True\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/routes/521940355653",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"routes",
+										"521940355653"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy a Route",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/v1/routes/521940355653",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"routes",
+										"521940355653"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "SignUp",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"asd@gmail.com\",\n\t\"password\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/accounts/signup/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										"signup",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Get user token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0f0682db-3ec9-4322-87ce-8f90a5f425fb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"migantoju@gmail.com\",\n\t\"password\": \"129609asd\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api-token-auth/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api-token-auth",
+						""
+					]
+				},
+				"description": "Este punto final de la API permite que  el usuario inicie sesión, regresa un TOKEN como respuesta."
+			},
+			"response": [
+				{
+					"name": "[ 200 ] Get user token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"urbvan\",\n\t\"password\": \"pruebatecnica\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api-token-auth/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api-token-auth",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS",
+							"name": "Allow",
+							"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Apr 2018 06:16:15 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.5",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						}
+					],
+					"cookie": [],
+					"body": "{\"token\":\"3dcc9618369b7c0894026705773cdd6c7cd07eb0\"}"
+				}
+			]
+		}
+	]
+}
