@@ -7,8 +7,8 @@ class TimeStampedModel(models.Model):
     `createdAt` & `updatedAt` en cualquier modelo hijo
     del cual herede éste.
     """
-    createdAt = models.DateTimeField('Fecha de Creación', auto_now_add=True)
-    updatedAt = models.DateTimeField('Fecha de Actualización', auto_now=True)
+    createdAt = models.DateTimeField('Fecha de Creación', auto_now_add=True, null=True)
+    updatedAt = models.DateTimeField('Fecha de Actualización', auto_now=True, null=True)
 
     class Meta:
         abstract = True

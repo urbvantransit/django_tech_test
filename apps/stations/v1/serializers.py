@@ -15,5 +15,5 @@ class StationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StationModel
-        exclude = ('id', )
+        fields = '__all__'
         read_only_fields = ('user', )

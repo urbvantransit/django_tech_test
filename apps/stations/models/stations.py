@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 
 from apps.core.models import TimeStampedModel
-from apps.utils import create_id
+from apps.utils import IDGenerator #create_id
 
 from .locations import LocationModel
 
@@ -22,9 +22,14 @@ class StationModel(TimeStampedModel):
 
     """
 
-    id = models.CharField(default=create_id('sta_'), primary_key=True,
-                          max_length=30, unique=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_station', on_delete=models.DO_NOTHING)
+    id = models.CharField(default=IDGenerator, 
+                        primary_key=True,
+                        max_length=30, 
+                        unique=True,
+                        db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, 
+                            related_name='user_station', 
+                            on_delete=models.DO_NOTHING)
     location = models.ForeignKey(LocationModel, on_delete=models.DO_NOTHING)
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)

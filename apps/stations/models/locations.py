@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 
 from apps.core.models import TimeStampedModel
-from apps.utils import create_id
+from apps.utils import IDGenerator #create_id
 
 
 class LocationModel(TimeStampedModel):
@@ -18,9 +18,14 @@ class LocationModel(TimeStampedModel):
             geometry -- Similar to coordinate but using with postgis
     """
 
-    id = models.CharField(default=create_id('loc_'), primary_key=True,
-                          max_length=30, unique=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_loc', on_delete=models.DO_NOTHING)
+    id = models.CharField(default=IDGenerator, 
+                        primary_key=True,
+                        max_length=30, 
+                        unique=True,
+                        db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, 
+                            related_name='user_loc', 
+                            on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=100)
     latitude = models.DecimalField(max_digits=19, decimal_places=16)
     longitude = models.DecimalField(max_digits=19, decimal_places=16)
