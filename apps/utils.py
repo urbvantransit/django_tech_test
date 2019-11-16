@@ -1,4 +1,5 @@
 # coding: utf8
+import string, random, uuid
 from datetime import datetime
 from uuid import uuid4
 
@@ -7,7 +8,6 @@ from uuid import uuid4
 # utilizando datetime y F-String, una nueva y 
 # mejorada manera de dar formato a las String en Python
 def create_id(identifier):
-
 
     now = datetime.utcnow()
     uid = str(uuid4())[:8]
@@ -20,4 +20,8 @@ def create_id(identifier):
         f"{now.minute}"
         f"{now.second}"
         f"{uid}"
-    ) 
+    )
+
+""" Generador de ID's unicos para los tweets """
+def IDGenerator(chars=string.digits, size=12):
+    return ''.join(random.choice(chars) for _ in range(size))
