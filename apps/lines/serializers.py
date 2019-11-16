@@ -24,6 +24,22 @@ class RouteModelSerailizer(serializers.ModelSerializer):
     `RouteModel` y sus respectivos campos :
         `id`, `line`, `stations`, `direction` & `is_active`
     """
+
+    line = LineSerializer(required=False)
+    createdAt = serializers.SerializerMethodField()
+    updatedAt = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+
     class Meta:
         model = RouteModel
-        fields = '__all__'
+        fields = ('__all__')
+        read_only_fields = ('user', 'line', )
+
+    def get_createdAt(self, obj):
+        return obj.createdAt.isoformat()
+
+    def get_updatedAt(self, obj):
+        return obj.updatedAt.isoformat()
+
+    def get_url(self, obj):
+        return obj.get_absolute_url()
