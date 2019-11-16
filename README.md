@@ -13,7 +13,7 @@ Hola *aspirante*, Bienvenido a la prueba técnica para la vacante de **backend d
 # Objetivos
 
 - [ ] Crea un CRUD para cada modelo.
-- [ ] Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
+- [x] Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
 - [ ] Documenta el código.
 - [ ] Crea pruebas unitarias.
 - [ ] Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
