@@ -26,8 +26,8 @@ def superuser_only(function):
     Lmita la vista únicamente a los super usuarios
     """
 
-   def _inner(request, *args, **kwargs):
-       if not request.user.is_superuser:
-           raise PermissionDenied           
-       return function(request, *args, **kwargs)
-   return _inner
+    def _inner(request, *args, **kwargs):
+        if not request.user.is_superuser:
+            raise PermissionDenied           
+        return function(request, *args, **kwargs)
+    return _inner
