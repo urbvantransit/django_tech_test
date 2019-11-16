@@ -8,3 +8,11 @@ class LocationSchema(Schema):
     name = fields.String()
     latitude = fields.Decimal()
     longitude = fields.Decimal()
+
+class StationSchema(Schema):
+
+    id = fields.String()
+    user = fields.Integer()
+    location = fields.String()
+    order = fields.Integer()
+    is_active = fields.Boolean()
