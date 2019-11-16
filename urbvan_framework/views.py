@@ -1,9 +1,15 @@
 # coding: utf8
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import mixins
 
 from .authentication import CustomTokenAuthentication
-from .mixins import CreateModelMixin, ListModelMixin
+from .mixins import (
+                    CreateModelMixin, 
+                    ListModelMixin, 
+                    RetrieveModelMixin,
+                    UpdateModelMixin,
+                )
 from .schemas import PaginationResponse
 
 
@@ -34,3 +40,36 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 class ListCreateView(CreateAPIView, ListAPIView):
     pass
+
+class RetrieveView(RetrieveModelMixin, GenericAPIView):
+    """
+    Vista concreta para obtener un objeto, en este caso 
+    una `Line` pasandole el id de la linea.
+    """
+
+    authentication_classes = (CustomTokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+class UpdateView(UpdateModelMixin, GenericAPIView):
+
+    authentication_classes = (CustomTokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+class DestroyView(mixins.DestroyModelMixin,
+                     GenericAPIView):
+    authentication_classes = (CustomTokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+    """
+    Concrete view for deleting a model instance.
+    """
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
