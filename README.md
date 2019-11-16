@@ -12,12 +12,12 @@ Hola *aspirante*, Bienvenido a la prueba técnica para la vacante de **backend d
 
 # Objetivos
 
-- [ ] Crea un CRUD para cada modelo.
+- [x] Crea un CRUD para cada modelo.
 - [x] Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
-- [ ] Documenta el código.
+- [x] Documenta el código.
 - [ ] Crea pruebas unitarias.
-- [ ] Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
-- [ ] Crea commits descriptivos.
+- [x] Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
+- [x] Crea commits descriptivos.
 - [ ] Crear un archivo Dockerfile para correr el proyecto con nginx y wsgi.
 - [ ] Crear un router para separar la base de datos de lectura y escritura.
 
