@@ -2,7 +2,7 @@
 from django.urls import path
 
 from .v1 import views as views_v1
-from .v1.views import RUDLocationAPIView, StationView, RUDStationAPIView
+from .v1.views import RUDLocationAPIView, RUDStationAPIView, StationView
 
 urlpatterns_v1_locations = ([
 

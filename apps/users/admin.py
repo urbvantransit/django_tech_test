@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.forms import UserChangeForm
 
-from .models import User, UserProfile, DriveProfile
+from .models import DriveProfile, User, UserProfile
+
 
 class UserAdmin(admin.ModelAdmin):
     """

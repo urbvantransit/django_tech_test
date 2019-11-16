@@ -1,15 +1,11 @@
 # coding: utf8
+from rest_framework import mixins
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import mixins
 
 from .authentication import CustomTokenAuthentication
 from .mixins import (
-                    CreateModelMixin, 
-                    ListModelMixin, 
-                    RetrieveModelMixin,
-                    UpdateModelMixin,
-                )
+    CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from .schemas import PaginationResponse
 
 

@@ -6,6 +6,7 @@ from rest_framework import serializers
 # apps.line.models que es donde se encuentran
 from apps.lines.models import LineModel, RouteModel
 
+
 # creamos una clase `LineSerializer` que hereda de `ModelSerializer`
 class LineSerializer(serializers.ModelSerializer):
     """

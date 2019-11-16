@@ -1,12 +1,11 @@
 # coding: utf8
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.urls import reverse
 
+from apps.core.models import TimeStampedModel
 from apps.stations.models import StationModel
 from apps.utils import create_id
-from apps.core.models import TimeStampedModel
-
 
 # ********* IMPORTANTE ********* #
 # Se agrega TimeStampedModel a `LineModel` & `RouteModel`

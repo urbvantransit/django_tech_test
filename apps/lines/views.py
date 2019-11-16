@@ -1,16 +1,18 @@
 from django.http import Http404
-from rest_framework.response import Response
-from rest_framework import status, generics
-from rest_framework.views import APIView
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
-# from django.utils.decorators import method_decorator
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from apps.lines.serializers import LineSerializer, RouteModelSerailizer
 from apps.lines.models import LineModel, RouteModel
+from apps.lines.serializers import LineSerializer, RouteModelSerailizer
 # from apps.core.permissions import superuser_only
 from urbvan_framework.authentication import CustomTokenAuthentication
 from urbvan_framework.schemas import PaginationResponse
 from urbvan_framework.utils import render_response_error, render_to_response
+
+# from django.utils.decorators import method_decorator
+
 
 # Create your views here.
 

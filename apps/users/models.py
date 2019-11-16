@@ -1,14 +1,14 @@
-from django.db import models
 from django.conf import settings
-
-from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
 # modulo para poder traducir el texto a diferentes idiomas
 # en caso de ser requerido
 from django.utils.translation import ugettext_lazy as _
 
-from .managers import UserManager
 from apps.core.models import TimeStampedModel
+
+from .managers import UserManager
 
 # ******** IMPORTANTE ************* #
 # Se tendrán 3 tipos de usuarios diferentes:
@@ -85,4 +85,3 @@ class UserProfile(TimeStampedModel):
 
     def __str__(self):
         return self.get_full_name()
-

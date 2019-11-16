@@ -1,9 +1,9 @@
 # coding: utf8
-from django.db import models
 from django.conf import settings
+from django.db import models
 
-from apps.utils import create_id
 from apps.core.models import TimeStampedModel
+from apps.utils import create_id
 
 
 class LocationModel(TimeStampedModel):

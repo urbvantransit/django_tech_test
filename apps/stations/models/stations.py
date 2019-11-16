@@ -1,11 +1,11 @@
 # coding: utf8
-from django.db import models
 from django.conf import settings
+from django.db import models
 
+from apps.core.models import TimeStampedModel
 from apps.utils import create_id
 
 from .locations import LocationModel
-from apps.core.models import TimeStampedModel
 
 
 class StationModel(TimeStampedModel):

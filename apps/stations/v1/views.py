@@ -1,9 +1,10 @@
 # coding: utf8
 from rest_framework import generics, status
 from rest_framework.response import Response
-from urbvan_framework.views import ListCreateView
-from urbvan_framework.utils import render_response_error, render_to_response
+
 from urbvan_framework.authentication import CustomTokenAuthentication
+from urbvan_framework.utils import render_response_error, render_to_response
+from urbvan_framework.views import ListCreateView
 
 from ..models import LocationModel, StationModel
 from .schemas import LocationSchema, StationSchema

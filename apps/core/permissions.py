@@ -8,6 +8,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 
+
 def group_required(*group_name):
     """
     Requiere que para hacer la acción que se pretende,

@@ -1,10 +1,9 @@
 from django.urls import path
+
 from apps.lines.views import (
-                            ListCreateLineAPIView,
-                            RetrieveUpdateDestroyAPIView,
-                            ListCreateRouteAPIView,
-                            RetrieveUpdateDestroyRouteAPIView
-)
+    ListCreateLineAPIView, ListCreateRouteAPIView,
+    RetrieveUpdateDestroyAPIView, RetrieveUpdateDestroyRouteAPIView)
+
 app_name = 'lines_routes'
 
 urlpatterns = [
