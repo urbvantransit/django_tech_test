@@ -25,7 +25,7 @@ class RouteModelSerailizer(serializers.ModelSerializer):
         `id`, `line`, `stations`, `direction` & `is_active`
     """
 
-    line = LineSerializer(required=False)
+    #line = LineSerializer(required=False)
     createdAt = serializers.SerializerMethodField()
     updatedAt = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
