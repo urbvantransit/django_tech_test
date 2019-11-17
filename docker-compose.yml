@@ -1,0 +1,53 @@
+# version de docker-compose con la que trabajaremos
+version: '3'
+
+# definiendo los servicios que correran en nuestro contenedor
+services:
+  web:
+    restart: always
+    build: .
+    command: gunicorn urbvan.wsgi:application --bind 0.0.0.0:8000 #python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+      - static_volume:/usr/src/app/staticfiles
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    environment:
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=postgres
+      - SQL_USER=postgres
+      - SQL_PASSWORD=postgres
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+    # networks:
+    #   - web_network
+    #   - db_network
+  db:
+    image: postgres:10.5-alpine
+  # networks:
+  #     - db_network
+  nginx:
+    restart: always
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+    # networks:
+    #   - web_network
+
+# networks:
+#   web_network:
+#     driver: bridge
+#   db_network:
+#     driver: bridge
+
+volumes:
+  static_volume:
